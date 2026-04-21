@@ -1,7 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Sparkles, Gift, Share2, Star } from "lucide-react";
+import { Heart, Sparkles, Gift, Share2, Star, Download, Mail, Globe } from "lucide-react";
+import { toPng } from "html-to-image";
+import confetti from "canvas-confetti";
+import {
+  LANGS,
+  TEMPLATES,
+  t as translations,
+  type Lang,
+  type WishTemplate,
+} from "@/lib/rakhi-i18n";
 
 const TARGET_DATE = new Date("Aug 28, 2026 00:00:00").getTime();
 
@@ -21,7 +30,17 @@ const useCountdown = () => {
   };
 };
 
-const Petal = ({ delay, duration, left, emoji }: { delay: number; duration: number; left: number; emoji: string }) => (
+const Petal = ({
+  delay,
+  duration,
+  left,
+  emoji,
+}: {
+  delay: number;
+  duration: number;
+  left: number;
+  emoji: string;
+}) => (
   <div
     className="pointer-events-none absolute text-2xl animate-float-up"
     style={{ left: `${left}%`, animationDelay: `${delay}s`, animationDuration: `${duration}s` }}
@@ -31,25 +50,61 @@ const Petal = ({ delay, duration, left, emoji }: { delay: number; duration: numb
   </div>
 );
 
+const fireConfetti = () => {
+  const end = Date.now() + 800;
+  const colors = ["#f97316", "#eab308", "#ec4899", "#a855f7", "#22c55e"];
+  (function frame() {
+    confetti({
+      particleCount: 4,
+      angle: 60,
+      spread: 70,
+      origin: { x: 0, y: 0.8 },
+      colors,
+    });
+    confetti({
+      particleCount: 4,
+      angle: 120,
+      spread: 70,
+      origin: { x: 1, y: 0.8 },
+      colors,
+    });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+  confetti({ particleCount: 120, spread: 100, origin: { y: 0.6 }, colors });
+};
+
 const Index = () => {
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState<string | null>(null);
+  const [lang, setLang] = useState<Lang>("en");
+  const [templateId, setTemplateId] = useState<string>(TEMPLATES[0].id);
   const { days, hours, minutes, seconds, done } = useCountdown();
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Read prefilled name from URL (?bl=Name)
+  const T = translations[lang];
+  const template: WishTemplate =
+    TEMPLATES.find((x) => x.id === templateId) ?? TEMPLATES[0];
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const bl = params.get("bl");
+    const lp = params.get("lang") as Lang | null;
+    const tp = params.get("tpl");
+    if (lp && LANGS.some((l) => l.code === lp)) setLang(lp);
+    if (tp && TEMPLATES.some((x) => x.id === tp)) setTemplateId(tp);
     if (bl) {
       const clean = decodeURIComponent(bl).replace(/-/g, " ").trim();
-      if (clean) setSubmitted(clean);
+      if (clean) {
+        setSubmitted(clean);
+        setTimeout(fireConfetti, 400);
+      }
     }
     document.title = "Raksha Bandhan 2026 — Send a Heartfelt Wish";
   }, []);
 
   const petals = useMemo(
     () =>
-      Array.from({ length: 18 }).map((_, i) => ({
+      Array.from({ length: 14 }).map((_, i) => ({
         id: i,
         delay: Math.random() * 8,
         duration: 10 + Math.random() * 10,
@@ -65,71 +120,130 @@ const Index = () => {
     if (!trimmed) return;
     setSubmitted(trimmed);
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(fireConfetti, 250);
   };
+
+  const buildShareUrl = () => {
+    if (!submitted) return window.location.href;
+    const base = window.location.href.split("?")[0];
+    const encodedName = encodeURIComponent(submitted).replace(/%20/g, "-");
+    return `${base}?bl=${encodedName}&lang=${lang}&tpl=${template.id}`;
+  };
+
+  const wishText = () =>
+    `${submitted} ${T.wishes} ${T.happy} 🎁✨\n\n"${template.messages[lang]}"`;
 
   const shareOnWhatsApp = () => {
     if (!submitted) return;
-    const url = (window.location.href.split("?")[0] + "?bl=" + submitted).replace(/ /g, "-");
-    const text = `*${submitted}* has sent you a special Raksha Bandhan wish 🎁✨%0A👉 ${url}`;
+    const text = `*${submitted}* — ${T.happy} 🎁✨%0A${encodeURIComponent(
+      template.messages[lang]
+    )}%0A👉 ${buildShareUrl()}`;
     window.location.href = `whatsapp://send?text=${text}`;
   };
 
+  const shareViaEmail = () => {
+    if (!submitted) return;
+    const subject = encodeURIComponent(T.emailSubject);
+    const body = encodeURIComponent(`${wishText()}\n\n${buildShareUrl()}`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  };
+
+  const downloadImage = async () => {
+    if (!cardRef.current) return;
+    try {
+      const dataUrl = await toPng(cardRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
+        backgroundColor: "#FFF4E6",
+      });
+      const link = document.createElement("a");
+      link.download = `rakhi-wish-${submitted ?? "card"}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error("Failed to download image:", err);
+    }
+  };
+
+  const langFontClass =
+    lang === "hi" || lang === "mr"
+      ? "font-devanagari"
+      : lang === "gu"
+      ? "font-gujarati"
+      : lang === "ta"
+      ? "font-tamil"
+      : "";
+
   return (
-    <main className="relative min-h-screen overflow-hidden bg-gradient-sunset">
-      {/* Floating petals */}
+    <main className={`relative min-h-screen overflow-hidden bg-gradient-sunset ${langFontClass}`}>
       <div className="pointer-events-none fixed inset-0 z-0">
         {petals.map((p) => (
           <Petal key={p.id} {...p} />
         ))}
       </div>
 
-      {/* Decorative rangoli corners */}
       <div className="pointer-events-none absolute -left-20 -top-20 h-80 w-80 rounded-full bg-gradient-festive opacity-20 blur-3xl" />
       <div className="pointer-events-none absolute -right-24 top-40 h-96 w-96 rounded-full bg-gradient-gold opacity-20 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-secondary/20 blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-5 py-10 sm:py-16">
+      <div className="relative z-10 mx-auto max-w-3xl px-4 py-6 sm:px-5 sm:py-12">
+        {/* Language selector */}
+        <div className="mb-4 flex items-center justify-end gap-2">
+          <Globe className="h-4 w-4 text-primary" />
+          <label className="sr-only">{T.pickLang}</label>
+          <select
+            value={lang}
+            onChange={(e) => setLang(e.target.value as Lang)}
+            className="rounded-full border border-primary/30 bg-card/80 px-3 py-1.5 text-xs font-semibold text-foreground backdrop-blur focus:outline-none focus:ring-2 focus:ring-ring"
+            aria-label={T.pickLang}
+          >
+            {LANGS.map((l) => (
+              <option key={l.code} value={l.code}>
+                {l.native}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Header */}
         <header className="text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card/60 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card/60 px-3 py-1.5 text-[11px] font-medium text-primary backdrop-blur sm:px-4 sm:text-xs">
             <Sparkles className="h-3.5 w-3.5" />
-            Raksha Bandhan • 28 August 2026
+            {T.chip}
           </div>
-          <h1 className="font-display text-5xl font-black leading-tight tracking-tight sm:text-7xl">
-            <span className="text-gradient-festive animate-shimmer bg-[length:200%_auto]">Happy Rakhi</span>
+          <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+            <span className="text-gradient-festive animate-shimmer bg-[length:200%_auto]">
+              {T.title}
+            </span>
             <br />
-            <span className="font-script text-4xl font-normal text-foreground/80 sm:text-5xl">
-              A bond beyond words
+            <span className="font-script text-3xl font-normal text-foreground/80 sm:text-5xl">
+              {T.subtitle}
             </span>
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            A sacred thread of love, protection & endless memories. Send a personalised
-            Raksha Bandhan wish to your brother or sister this year. 💖
+          <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-lg">
+            {T.intro}
           </p>
         </header>
 
         {/* Countdown */}
-        <section className="mt-10">
-          <div className="rounded-3xl border border-primary/20 bg-card/70 p-6 shadow-festive backdrop-blur">
-            <p className="text-center text-sm font-semibold uppercase tracking-widest text-primary">
-              {done ? "It's Rakhi Day! 🎉" : "Rakhi arrives in"}
+        <section className="mt-8 sm:mt-10">
+          <div className="rounded-2xl border border-primary/20 bg-card/70 p-4 shadow-festive backdrop-blur sm:rounded-3xl sm:p-6">
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary sm:text-sm">
+              {done ? `🎉 ${T.today}` : T.arrives}
             </p>
-            <div className="mt-4 grid grid-cols-4 gap-3 sm:gap-4">
+            <div className="mt-3 grid grid-cols-4 gap-2 sm:mt-4 sm:gap-4">
               {[
-                { label: "Days", value: days },
-                { label: "Hours", value: hours },
-                { label: "Minutes", value: minutes },
-                { label: "Seconds", value: seconds },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="rounded-2xl bg-gradient-festive p-[2px]"
-                >
-                  <div className="rounded-[14px] bg-card px-2 py-4 text-center">
-                    <div className="font-display text-3xl font-black text-gradient-festive sm:text-5xl tabular-nums">
+                { label: T.days, value: days },
+                { label: T.hours, value: hours },
+                { label: T.minutes, value: minutes },
+                { label: T.seconds, value: seconds },
+              ].map((c, i) => (
+                <div key={i} className="rounded-xl bg-gradient-festive p-[2px] sm:rounded-2xl">
+                  <div className="rounded-[10px] bg-card px-1 py-3 text-center sm:rounded-[14px] sm:px-2 sm:py-4">
+                    <div className="font-display text-2xl font-black text-gradient-festive tabular-nums sm:text-5xl">
                       {String(c.value).padStart(2, "0")}
                     </div>
-                    <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground sm:text-xs">
+                    <div className="mt-0.5 text-[9px] font-semibold uppercase tracking-wider text-muted-foreground sm:mt-1 sm:text-xs sm:tracking-widest">
                       {c.label}
                     </div>
                   </div>
@@ -139,55 +253,124 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Wish / Form Card */}
-        <section className="mt-10">
+        {/* Wish / Form */}
+        <section className="mt-8 sm:mt-10">
           {submitted ? (
-            <WishCard name={submitted} onShare={shareOnWhatsApp} onReset={() => setSubmitted(null)} />
+            <div className="space-y-5">
+              {/* Template picker */}
+              <div className="rounded-2xl border border-accent/30 bg-card/80 p-4 backdrop-blur sm:p-5">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-primary">
+                  {T.pickStyle}
+                </p>
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                  {TEMPLATES.map((tpl) => (
+                    <button
+                      key={tpl.id}
+                      onClick={() => setTemplateId(tpl.id)}
+                      className={`group rounded-xl border-2 p-3 text-left transition ${
+                        templateId === tpl.id
+                          ? "border-primary bg-primary/10 shadow-festive"
+                          : "border-border bg-background/50 hover:border-primary/40"
+                      }`}
+                    >
+                      <div className="text-2xl">{tpl.emoji}</div>
+                      <div className="mt-1 text-xs font-bold">{tpl.name}</div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <WishCard
+                ref={cardRef}
+                name={submitted}
+                template={template}
+                lang={lang}
+                T={T}
+                langFontClass={langFontClass}
+              />
+
+              {/* Actions */}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <Button
+                  onClick={shareOnWhatsApp}
+                  className="h-12 rounded-2xl bg-[hsl(142_70%_49%)] text-sm font-bold text-white hover:bg-[hsl(142_70%_45%)] hover:shadow-glow sm:h-14 sm:text-base"
+                >
+                  <Share2 className="mr-2 h-5 w-5" />
+                  {T.shareWA}
+                </Button>
+                <Button
+                  onClick={shareViaEmail}
+                  className="h-12 rounded-2xl bg-gradient-festive text-sm font-bold text-primary-foreground hover:opacity-95 hover:shadow-glow sm:h-14 sm:text-base"
+                >
+                  <Mail className="mr-2 h-5 w-5" />
+                  {T.shareEmail}
+                </Button>
+                <Button
+                  onClick={downloadImage}
+                  variant="outline"
+                  className="h-12 rounded-2xl border-primary/40 text-sm font-semibold sm:h-14 sm:text-base"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  {T.download}
+                </Button>
+                <Button
+                  onClick={() => setSubmitted(null)}
+                  variant="outline"
+                  className="h-12 rounded-2xl border-primary/30 text-sm font-semibold sm:h-14 sm:text-base"
+                >
+                  {T.change}
+                </Button>
+              </div>
+            </div>
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-accent/30 bg-card/80 p-6 shadow-festive backdrop-blur sm:p-8"
+              className="rounded-2xl border border-accent/30 bg-card/80 p-5 shadow-festive backdrop-blur sm:rounded-3xl sm:p-8"
             >
-              <div className="mb-5 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-gold shadow-glow">
+              <div className="mb-4 flex items-center gap-3 sm:mb-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-gold shadow-glow sm:h-11 sm:w-11">
                   <Gift className="h-5 w-5 text-accent-foreground" />
                 </div>
-                <div>
-                  <h2 className="font-display text-2xl font-bold">Create your wish</h2>
-                  <p className="text-sm text-muted-foreground">Enter your name to personalise</p>
+                <div className="min-w-0">
+                  <h2 className="font-display text-xl font-bold sm:text-2xl">
+                    {T.createWish}
+                  </h2>
+                  <p className="text-xs text-muted-foreground sm:text-sm">
+                    {T.enterName}
+                  </p>
                 </div>
               </div>
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your name (e.g. Aarav)"
-                className="h-14 rounded-2xl border-primary/30 bg-background/80 px-5 text-base"
+                placeholder={T.namePh}
+                className="h-12 rounded-2xl border-primary/30 bg-background/80 px-4 text-base sm:h-14 sm:px-5"
                 autoFocus
               />
               <Button
                 type="submit"
-                className="mt-4 h-14 w-full rounded-2xl bg-gradient-festive text-base font-bold text-primary-foreground shadow-festive hover:opacity-95 hover:shadow-glow"
+                className="mt-4 h-12 w-full rounded-2xl bg-gradient-festive text-sm font-bold text-primary-foreground shadow-festive hover:opacity-95 hover:shadow-glow sm:h-14 sm:text-base"
               >
                 <Sparkles className="mr-2 h-5 w-5" />
-                Create My Wish
+                {T.createBtn}
               </Button>
-              <p className="mt-3 text-center text-xs text-muted-foreground">
-                Free • No sign-up • Share instantly on WhatsApp
+              <p className="mt-3 text-center text-[11px] text-muted-foreground sm:text-xs">
+                {T.tagline}
               </p>
             </form>
           )}
         </section>
 
         {/* Features */}
-        <section className="mt-12 grid gap-4 sm:grid-cols-3">
+        <section className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-4">
           {[
             { icon: Heart, title: "Heartfelt", desc: "Crafted with love for siblings" },
             { icon: Star, title: "Personalised", desc: "Your name, your wish" },
-            { icon: Share2, title: "One-tap share", desc: "Direct to WhatsApp" },
+            { icon: Share2, title: "One-tap share", desc: "WhatsApp, Email, Image" },
           ].map((f) => (
             <div
               key={f.title}
-              className="group rounded-2xl border border-border bg-card/60 p-5 backdrop-blur transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-festive"
+              className="group rounded-2xl border border-border bg-card/60 p-4 backdrop-blur transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-festive sm:p-5"
             >
               <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-gold">
                 <f.icon className="h-5 w-5 text-accent-foreground" />
@@ -198,55 +381,59 @@ const Index = () => {
           ))}
         </section>
 
-        <footer className="mt-14 pb-24 text-center text-xs text-muted-foreground">
-          Made with <span className="text-primary">♥</span> for every brother & sister • Raksha Bandhan 2026
+        <footer className="mt-12 pb-10 text-center text-xs text-muted-foreground sm:mt-14">
+          Made with <span className="text-primary">♥</span> for every brother & sister • Raksha
+          Bandhan 2026
         </footer>
       </div>
     </main>
   );
 };
 
-const WishCard = ({ name, onShare, onReset }: { name: string; onShare: () => void; onReset: () => void }) => (
-  <div className="relative overflow-hidden rounded-3xl bg-gradient-festive p-[3px] shadow-festive">
-    <div className="relative rounded-[22px] bg-card px-6 py-10 text-center sm:px-10 sm:py-14">
-      {/* Rakhi thread decoration */}
+type WishCardProps = {
+  name: string;
+  template: WishTemplate;
+  lang: Lang;
+  T: (typeof translations)[Lang];
+  langFontClass: string;
+};
+
+const WishCard = ({
+  ref,
+  name,
+  template,
+  lang,
+  T,
+  langFontClass,
+}: WishCardProps & { ref: React.RefObject<HTMLDivElement> }) => (
+  <div
+    ref={ref}
+    className={`relative overflow-hidden rounded-3xl ${template.gradient} p-[3px] shadow-festive ${langFontClass}`}
+  >
+    <div className="relative rounded-[22px] bg-card px-5 py-8 text-center sm:px-10 sm:py-14">
       <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center">
         <div className="h-1 w-40 rounded-b-full bg-gradient-gold" />
       </div>
-      <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-gold shadow-glow animate-pulse-glow">
-        <span className="text-4xl animate-wiggle">🪔</span>
+      <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-gold shadow-glow animate-pulse-glow sm:mb-6 sm:h-20 sm:w-20">
+        <span className="text-3xl animate-wiggle sm:text-4xl">{template.emoji}</span>
       </div>
-      <p className="font-script text-3xl text-primary sm:text-4xl">Dearest sibling,</p>
-      <h2 className="mt-3 font-display text-4xl font-black leading-tight sm:text-6xl">
-        <span className="text-gradient-festive">{name}</span>
+      <p className="font-script text-2xl text-primary sm:text-4xl">{T.dearest}</p>
+      <h2 className="mt-2 font-display text-3xl font-black leading-tight sm:mt-3 sm:text-6xl break-words">
+        <span className={template.accent}>{name}</span>
       </h2>
-      <p className="font-script text-2xl text-muted-foreground sm:text-3xl">wishes you a</p>
-      <h3 className="mt-2 font-display text-3xl font-black text-gradient-gold sm:text-5xl">
-        Happy Raksha Bandhan 2026
+      <p className="font-script text-xl text-muted-foreground sm:text-3xl">{T.wishes}</p>
+      <h3 className="mt-2 font-display text-2xl font-black text-gradient-gold sm:text-5xl">
+        {T.happy}
       </h3>
-      <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-foreground/80 sm:text-base">
-        “We gain and lose things every day — but trust me on one thing, you'll never lose me.
-        I will always be here. 🌸”
+      <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-foreground/80 sm:mt-6 sm:text-base">
+        "{template.messages[lang]}"
       </p>
-      <div className="mt-4 flex justify-center gap-1 text-2xl">
-        <span>🎁</span><span>✨</span><span>🪷</span><span>💝</span><span>🌺</span>
-      </div>
-
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-        <Button
-          onClick={onShare}
-          className="h-14 rounded-2xl bg-[#25D366] px-8 text-base font-bold text-white hover:bg-[#25D366]/90 hover:shadow-glow"
-        >
-          <Share2 className="mr-2 h-5 w-5" />
-          Share on WhatsApp
-        </Button>
-        <Button
-          onClick={onReset}
-          variant="outline"
-          className="h-14 rounded-2xl border-primary/30 px-6 text-base font-semibold"
-        >
-          Change name
-        </Button>
+      <div className="mt-3 flex justify-center gap-1 text-2xl sm:mt-4">
+        <span>🎁</span>
+        <span>✨</span>
+        <span>🪷</span>
+        <span>💝</span>
+        <span>🌺</span>
       </div>
     </div>
   </div>

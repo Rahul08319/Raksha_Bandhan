@@ -123,6 +123,15 @@
   .font-script {
     font-family: 'Dancing Script', cursive;
   }
+  .font-devanagari {
+    font-family: 'Noto Sans Devanagari', 'Poppins', system-ui, sans-serif;
+  }
+  .font-gujarati {
+    font-family: 'Noto Sans Gujarati', 'Poppins', system-ui, sans-serif;
+  }
+  .font-tamil {
+    font-family: 'Noto Sans Tamil', 'Poppins', system-ui, sans-serif;
+  }
 }
 
 @keyframes float-up {
