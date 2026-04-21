@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Heart, Sparkles, Gift, Share2, Star, Download, Mail, Globe } from "lucide-react";
@@ -398,45 +398,41 @@ type WishCardProps = {
   langFontClass: string;
 };
 
-const WishCard = ({
-  ref,
-  name,
-  template,
-  lang,
-  T,
-  langFontClass,
-}: WishCardProps & { ref: React.RefObject<HTMLDivElement> }) => (
-  <div
-    ref={ref}
-    className={`relative overflow-hidden rounded-3xl ${template.gradient} p-[3px] shadow-festive ${langFontClass}`}
-  >
-    <div className="relative rounded-[22px] bg-card px-5 py-8 text-center sm:px-10 sm:py-14">
-      <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center">
-        <div className="h-1 w-40 rounded-b-full bg-gradient-gold" />
-      </div>
-      <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-gold shadow-glow animate-pulse-glow sm:mb-6 sm:h-20 sm:w-20">
-        <span className="text-3xl animate-wiggle sm:text-4xl">{template.emoji}</span>
-      </div>
-      <p className="font-script text-2xl text-primary sm:text-4xl">{T.dearest}</p>
-      <h2 className="mt-2 font-display text-3xl font-black leading-tight sm:mt-3 sm:text-6xl break-words">
-        <span className={template.accent}>{name}</span>
-      </h2>
-      <p className="font-script text-xl text-muted-foreground sm:text-3xl">{T.wishes}</p>
-      <h3 className="mt-2 font-display text-2xl font-black text-gradient-gold sm:text-5xl">
-        {T.happy}
-      </h3>
-      <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-foreground/80 sm:mt-6 sm:text-base">
-        "{template.messages[lang]}"
-      </p>
-      <div className="mt-3 flex justify-center gap-1 text-2xl sm:mt-4">
-        <span>🎁</span>
-        <span>✨</span>
-        <span>🪷</span>
-        <span>💝</span>
-        <span>🌺</span>
+const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
+  ({ name, template, lang, T, langFontClass }, ref) => (
+    <div
+      ref={ref}
+      className={`relative overflow-hidden rounded-3xl ${template.gradient} p-[3px] shadow-festive ${langFontClass}`}
+    >
+      <div className="relative rounded-[22px] bg-card px-5 py-8 text-center sm:px-10 sm:py-14">
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center">
+          <div className="h-1 w-40 rounded-b-full bg-gradient-gold" />
+        </div>
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-gold shadow-glow animate-pulse-glow sm:mb-6 sm:h-20 sm:w-20">
+          <span className="text-3xl animate-wiggle sm:text-4xl">{template.emoji}</span>
+        </div>
+        <p className="font-script text-2xl text-primary sm:text-4xl">{T.dearest}</p>
+        <h2 className="mt-2 font-display text-3xl font-black leading-tight sm:mt-3 sm:text-6xl break-words">
+          <span className={template.accent}>{name}</span>
+        </h2>
+        <p className="font-script text-xl text-muted-foreground sm:text-3xl">{T.wishes}</p>
+        <h3 className="mt-2 font-display text-2xl font-black text-gradient-gold sm:text-5xl">
+          {T.happy}
+        </h3>
+        <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-foreground/80 sm:mt-6 sm:text-base">
+          "{template.messages[lang]}"
+        </p>
+        <div className="mt-3 flex justify-center gap-1 text-2xl sm:mt-4">
+          <span>🎁</span>
+          <span>✨</span>
+          <span>🪷</span>
+          <span>💝</span>
+          <span>🌺</span>
+        </div>
       </div>
     </div>
-  </div>
+  )
 );
+WishCard.displayName = "WishCard";
 
 export default Index;
