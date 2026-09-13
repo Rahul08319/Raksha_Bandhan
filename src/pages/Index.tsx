@@ -11,16 +11,15 @@ import {
   type Lang,
   type WishTemplate,
 } from "@/lib/rakhi-i18n";
+import { getNextRakhi } from "@/lib/rakhi-dates";
 
-const TARGET_DATE = new Date("Aug 28, 2026 00:00:00").getTime();
-
-const useCountdown = () => {
+const useCountdown = (target: number) => {
   const [now, setNow] = useState(Date.now());
   useEffect(() => {
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);
-  const distance = Math.max(TARGET_DATE - now, 0);
+  const distance = Math.max(target - now, 0);
   return {
     days: Math.floor(distance / (1000 * 60 * 60 * 24)),
     hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
@@ -78,7 +77,8 @@ const Index = () => {
   const [submitted, setSubmitted] = useState<string | null>(null);
   const [lang, setLang] = useState<Lang>("en");
   const [templateId, setTemplateId] = useState<string>(TEMPLATES[0].id);
-  const { days, hours, minutes, seconds, done } = useCountdown();
+  const rakhi = useMemo(() => getNextRakhi(Date.now(), lang), [lang]);
+  const { days, hours, minutes, seconds, done } = useCountdown(rakhi.date.getTime());
   const cardRef = useRef<HTMLDivElement>(null);
 
   const T = translations[lang];
@@ -99,8 +99,10 @@ const Index = () => {
         setTimeout(fireConfetti, 400);
       }
     }
-    document.title = "Raksha Bandhan 2026 — Send a Heartfelt Wish";
   }, []);
+  useEffect(() => {
+    document.title = `Raksha Bandhan ${rakhi.year} — Send a Heartfelt Wish`;
+  }, [rakhi.year]);
 
   const petals = useMemo(
     () =>
@@ -130,12 +132,14 @@ const Index = () => {
     return `${base}?bl=${encodedName}&lang=${lang}&tpl=${template.id}`;
   };
 
+  const happyText = T.happy.replace("{year}", String(rakhi.year));
+  const chipText = T.chip.replace("{date}", rakhi.dateLabel);
   const wishText = () =>
-    `${submitted} ${T.wishes} ${T.happy} 🎁✨\n\n"${template.messages[lang]}"`;
+    `${submitted} ${T.wishes} ${happyText} 🎁✨\n\n"${template.messages[lang]}"`;
 
   const shareOnWhatsApp = () => {
     if (!submitted) return;
-    const text = `*${submitted}* — ${T.happy} 🎁✨%0A${encodeURIComponent(
+    const text = `*${submitted}* — ${happyText} 🎁✨%0A${encodeURIComponent(
       template.messages[lang]
     )}%0A👉 ${buildShareUrl()}`;
     window.location.href = `whatsapp://send?text=${text}`;
@@ -209,7 +213,7 @@ const Index = () => {
         <header className="text-center">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card/60 px-3 py-1.5 text-[11px] font-medium text-primary backdrop-blur sm:px-4 sm:text-xs">
             <Sparkles className="h-3.5 w-3.5" />
-            {T.chip}
+            {chipText}
           </div>
           <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
             <span className="text-gradient-festive animate-shimmer bg-[length:200%_auto]">
@@ -287,6 +291,7 @@ const Index = () => {
                 lang={lang}
                 T={T}
                 langFontClass={langFontClass}
+                year={rakhi.year}
               />
 
               {/* Actions */}
@@ -383,7 +388,7 @@ const Index = () => {
 
         <footer className="mt-12 pb-10 text-center text-xs text-muted-foreground sm:mt-14">
           Made with <span className="text-primary">♥</span> for every brother & sister • Raksha
-          Bandhan 2026
+          Bandhan {rakhi.year}
         </footer>
       </div>
     </main>
@@ -396,10 +401,11 @@ type WishCardProps = {
   lang: Lang;
   T: (typeof translations)[Lang];
   langFontClass: string;
+  year: number;
 };
 
 const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
-  ({ name, template, lang, T, langFontClass }, ref) => (
+  ({ name, template, lang, T, langFontClass, year }, ref) => (
     <div
       ref={ref}
       className={`relative overflow-hidden rounded-3xl ${template.gradient} p-[3px] shadow-festive ${langFontClass}`}
@@ -417,7 +423,7 @@ const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
         </h2>
         <p className="font-script text-xl text-muted-foreground sm:text-3xl">{T.wishes}</p>
         <h3 className="mt-2 font-display text-2xl font-black text-gradient-gold sm:text-5xl">
-          {T.happy}
+          {T.happy.replace("{year}", String(year))}
         </h3>
         <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-foreground/80 sm:mt-6 sm:text-base">
           "{template.messages[lang]}"
