@@ -10,7 +10,7 @@ export const LANGS: { code: Lang; label: string; native: string }[] = [
 
 export const t = {
   en: {
-    chip: "Raksha Bandhan • 28 August 2026",
+    chip: "Raksha Bandhan • {date}",
     title: "Happy Rakhi",
     subtitle: "A bond beyond words",
     intro:
@@ -28,7 +28,7 @@ export const t = {
     tagline: "Free • No sign-up • Share instantly",
     dearest: "Dearest sibling,",
     wishes: "wishes you a",
-    happy: "Happy Raksha Bandhan 2026",
+    happy: "Happy Raksha Bandhan {year}",
     pickStyle: "Choose a wish style",
     pickLang: "Language",
     shareWA: "Share on WhatsApp",
@@ -38,7 +38,7 @@ export const t = {
     emailSubject: "A special Raksha Bandhan wish for you 🎁",
   },
   hi: {
-    chip: "रक्षा बंधन • 28 अगस्त 2026",
+    chip: "रक्षा बंधन • {date}",
     title: "हैप्पी राखी",
     subtitle: "शब्दों से परे एक रिश्ता",
     intro:
@@ -56,7 +56,7 @@ export const t = {
     tagline: "मुफ़्त • बिना साइन-अप • तुरंत शेयर करें",
     dearest: "प्यारे भाई/बहन,",
     wishes: "आपको शुभकामनाएँ देते हैं",
-    happy: "हैप्पी रक्षा बंधन 2026",
+    happy: "हैप्पी रक्षा बंधन {year}",
     pickStyle: "शुभकामना शैली चुनें",
     pickLang: "भाषा",
     shareWA: "WhatsApp पर शेयर करें",
@@ -66,7 +66,7 @@ export const t = {
     emailSubject: "आपके लिए एक खास रक्षा बंधन शुभकामना 🎁",
   },
   mr: {
-    chip: "रक्षाबंधन • 28 ऑगस्ट 2026",
+    chip: "रक्षाबंधन • {date}",
     title: "हॅप्पी राखी",
     subtitle: "शब्दांपलीकडचं नातं",
     intro:
@@ -84,7 +84,7 @@ export const t = {
     tagline: "मोफत • साइन-अप नाही • लगेच शेअर करा",
     dearest: "प्रिय भाऊ/बहिण,",
     wishes: "तुम्हाला शुभेच्छा देतात",
-    happy: "हॅप्पी रक्षाबंधन 2026",
+    happy: "हॅप्पी रक्षाबंधन {year}",
     pickStyle: "शुभेच्छा शैली निवडा",
     pickLang: "भाषा",
     shareWA: "WhatsApp वर शेअर करा",
@@ -94,7 +94,7 @@ export const t = {
     emailSubject: "तुमच्यासाठी खास रक्षाबंधन शुभेच्छा 🎁",
   },
   gu: {
-    chip: "રક્ષાબંધન • 28 ઓગસ્ટ 2026",
+    chip: "રક્ષાબંધન • {date}",
     title: "હેપી રાખી",
     subtitle: "શબ્દોથી પર એક સંબંધ",
     intro:
@@ -112,7 +112,7 @@ export const t = {
     tagline: "મફત • સાઇન-અપ વિના • તરત શેર કરો",
     dearest: "પ્રિય ભાઈ/બહેન,",
     wishes: "તમને શુભેચ્છા પાઠવે છે",
-    happy: "હેપી રક્ષાબંધન 2026",
+    happy: "હેપી રક્ષાબંધન {year}",
     pickStyle: "શુભેચ્છા શૈલી પસંદ કરો",
     pickLang: "ભાષા",
     shareWA: "WhatsApp પર શેર કરો",
@@ -122,7 +122,7 @@ export const t = {
     emailSubject: "તમારા માટે ખાસ રક્ષાબંધન શુભેચ્છા 🎁",
   },
   ta: {
-    chip: "ரக்ஷா பந்தன் • 28 ஆகஸ்ட் 2026",
+    chip: "ரக்ஷா பந்தன் • {date}",
     title: "ஹேப்பி ராக்கி",
     subtitle: "வார்த்தைகளுக்கு அப்பாற்பட்ட பந்தம்",
     intro:
@@ -140,7 +140,7 @@ export const t = {
     tagline: "இலவசம் • பதிவு இல்லை • உடனே பகிர்",
     dearest: "அன்பான சகோதர/சகோதரி,",
     wishes: "உங்களுக்கு வாழ்த்துகிறார்",
-    happy: "ஹேப்பி ரக்ஷா பந்தன் 2026",
+    happy: "ஹேப்பி ரக்ஷா பந்தன் {year}",
     pickStyle: "வாழ்த்து பாணி",
     pickLang: "மொழி",
     shareWA: "WhatsApp-இல் பகிர்",
