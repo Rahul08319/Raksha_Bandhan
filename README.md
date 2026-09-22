@@ -8,23 +8,25 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Radix UI](https://img.shields.io/badge/Radix_UI-Headless-161618?style=for-the-badge&logo=radix-ui&logoColor=white)](https://www.radix-ui.com/)
+[![Apple Design](https://img.shields.io/badge/Design-Apple_Liquid_Glass-000000?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/design/)
+[![Audio Engine](https://img.shields.io/badge/Music-Flute_Instrumental_%26_Royalty--Free-EAB308?style=for-the-badge&logo=applemusic&logoColor=black)](https://github.com/Rahul08319/Raksha_Bandhan)
 [![License: MIT](https://img.shields.io/badge/License-MIT-E11D48?style=for-the-badge)](LICENSE)
 
 <br />
 
 <p align="center">
-  <strong>An ultra-aesthetic, luxury festival greeting portal &amp; custom card studio celebrating the sacred bond between siblings across eternity.</strong>
+  <strong>An ultra-aesthetic, luxury festival greeting studio &amp; cultural portal celebrating the eternal bond between siblings across space and time.</strong>
 </p>
 
 <p align="center">
   <a href="#-key-features">Key Features</a> •
-  <a href="#-interactive-card-studio">Card Studio</a> •
-  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-6-authentic-rakhi-motifs">Rakhi Motifs</a> •
+  <a href="#-bollywood--flute-soundscape">Audio Engine</a> •
+  <a href="#-apple-liquid-glass-design">Apple Design</a> •
+  <a href="#-virtual-rakhi-ceremony">Virtual Ceremony</a> •
+  <a href="#-historical-chronicles">Cultural Lore</a> •
   <a href="#-quick-start">Quick Start</a> •
-  <a href="#-multilingual-support">Languages</a> •
-  <a href="#-deep-linking">Deep Linking</a> •
-  <a href="#-contributing">Contributing</a>
+  <a href="#-deep-linking">Deep Linking</a>
 </p>
 
 </div>
@@ -33,11 +35,11 @@
 
 ## 📖 About Bandhan
 
-> *"A sacred thread of eternal love, protection, and cherished childhood memories."*
+> *"A sacred thread spun with unconditional love, lifelong protection, and the sweetest memories of childhood."*
 
-**Bandhan** (Code-Matcher) transforms the age-old tradition of **Raksha Bandhan** into an interactive digital celebration. Designed with traditional Indian art aesthetics—including animated flickering diyas, ornate lotus mandalas, silk thread motifs, and marigold torans—the platform allows anyone around the world to craft an embossed, high-definition festive card in seconds.
+**Bandhan** brings the sacred celebration of **Raksha Bandhan** into the modern digital era. Built with Apple-inspired fluid motion, translucent Liquid Glass materials, and rich traditional Indian decorative arts, Bandhan enables anyone anywhere in the world to create bespoke, embossed, 3x high-resolution greeting cards and take part in an authentic virtual ceremony.
 
-Whether your siblings are across the room or across the ocean, send personalized blessings directly via WhatsApp, email, or a downloadable 3x high-resolution card.
+Whether your siblings are celebrating together or separated by continents, send heartfelt wishes via WhatsApp, email, or a direct link with customized motifs, titles, and blessings.
 
 ---
 
@@ -46,82 +48,120 @@ Whether your siblings are across the room or across the ocean, send personalized
 <table width="100%">
   <tr>
     <td width="50%" valign="top">
-      <h3>🪔 Virtual Rakhi Ceremony Simulator</h3>
-      <p>An interactive digital ritual experience! Step-by-step <strong>Sacred Aarti</strong> (circle the glowing diya), <strong>Shubh Tilak</strong> application, <strong>Rakhi Tying</strong> with flower petal showers, and <strong>Festive Mithai</strong> offering (Kaju Katli, Motichoor Ladoo, Gulab Jamun).</p>
+      <h3>🪈 Default Flute Instrumental &amp; Bollywood Jukebox</h3>
+      <p>Features <strong>Raksha Bandhan Special Flute Instrumental</strong> (by Kiran Vinkar) as the default soundscape. Accompanied by 8 copyright-free synthesized Bollywood classics (<em>Phoolon Ka Taaron Ka</em>, <em>Bhaiya Mere Rakhi Ke</em>, <em>Behna Ne Bhai Ki</em>, festive Dholak rhythms, and Shehnai).</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🎨 10 Luxury &amp; Vedic Themes</h3>
-      <p>Themes: <em>Classic Festive</em>, <em>Royal Gold</em>, <em>Poetic Sunset</em>, <em>Playful Joy</em>, <em>Peacock Emerald</em>, <em>Imperial Silk</em>, <em>Vedic Shloka</em>, <em>Krishna-Draupadi</em>, <em>Rani Karnavati</em>, and <em>Tagore Harmony</em>.<br/>Frame Borders: <em>Royal Gold Foil</em>, <em>Marigold Blossom</em>, <em>Peacock Emerald</em>, and <em>Imperial Crimson</em>.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <h3>📜 Vedic Heritage &amp; Wikipedia Historical Chronicles</h3>
-      <p>Interactive cultural guide citing historical, Vedic and mythological archives:</p>
-      <ul>
-        <li><strong>Vedic Shloka:</strong> <em>येन बद्धो बलिराजा दानवेन्द्रो महाबल:...</em> with 1-click card insertion and meaning.</li>
-        <li><strong>Mythological Lore:</strong> King Bali &amp; Goddess Lakshmi, Lord Krishna &amp; Draupadi's Cheer Haran, Indra &amp; Sachi, Yama &amp; Yamuna.</li>
-        <li><strong>Historical Records:</strong> Rani Karnavati's Rakhi to Humayun (1535), Alexander &amp; King Porus, Rabindranath Tagore's 1905 Bengal Partition Rakhis of communal harmony.</li>
-        <li><strong>Pan-Indian Customs:</strong> Nariyal Purnima (West Coast), Kajari Purnima (Central India), Avani Avittam (South India), Saluno (North India), and Jain traditions.</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top">
-      <h3>⚜️ Sibling Honorary Titles &amp; Badges</h3>
-      <p>Decorate cards with custom royal ribbons: <em>Partner in Crime 🕵️</em>, <em>The Guardian &amp; Shield 🛡️</em>, <em>Secret Keeper 🤫</em>, <em>Forever Best Friend 💖</em>, <em>Drama Royalty 👑</em>, or <em>Midnight Snacker 🍕</em>.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>🌐 5 Indian Languages (i18n)</h3>
-      <p>True localized festival wishes with tailored script typography:</p>
-      <ul>
-        <li><strong>English</strong> (Outfit &amp; Playfair Display)</li>
-        <li><strong>हिन्दी</strong> (Noto Sans Devanagari)</li>
-        <li><strong>मराठी</strong> (Noto Sans Devanagari)</li>
-        <li><strong>ગુજરાતી</strong> (Noto Sans Gujarati)</li>
-        <li><strong>தமிழ்</strong> (Noto Sans Tamil)</li>
-      </ul>
+      <h3>🧵 6 Authentic Rakhi Motifs with Physics Sway</h3>
+      <p>Handcrafted vector motifs: <strong>Kundan Gold</strong>, <strong>Peacock Feather</strong>, <strong>Rudraksha Divine</strong>, <strong>Swastik &amp; Om</strong>, <strong>Lumba Zari Bhabhi Rakhi</strong>, and <strong>Silver Filigree Ruby</strong>—with delicate swaying silk threads and interactive selection.</p>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>⏳ Self-Updating Astronomical Calendar Engine</h3>
-      <p><strong>Never goes out of date!</strong> Combines verified Vedic Panchang records (2024–2050) with an <em>Astronomical Syzygy (Full Moon)</em> lunar engine for all future years into infinity. The minute festival day ends, the app automatically advances to the upcoming year, recalculates the date, and resets the countdown.</p>
+      <h3>🪔 Interactive 4-Step Ceremony Simulator</h3>
+      <p>Complete Vedic ritual on web or mobile: 
+      <br/>1. <strong>Sacred Aarti</strong> (smooth radial rotation of glowing diya)
+      <br/>2. <strong>Shubh Tilak</strong> (vermilion &amp; akshata blessing)
+      <br/>3. <strong>Tie the Chosen Rakhi</strong> (confetti &amp; petal shower)
+      <br/>4. <strong>Feed Festive Mithai</strong> (Kaju Katli, Motichoor, Gulab Jamun).</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🎶 Festive Bollywood Jukebox (8 Copyright-Free Tracks)</h3>
-      <p><strong>100% Copyright-Free &amp; Royalty-Free!</strong> Real-time Web Audio synthesized acoustic tributes, traditional Indian instruments (Bansuri flute, Shehnai, Sarangi, Harmonium, Sitar), and celebratory percussion loops:</p>
-      <ul>
-        <li>🌸 <strong>Phoolon Ka Taaron Ka</strong> (Sibling Anthem • Bansuri Flute &amp; Santoor)</li>
-        <li>🪔 <strong>Bhaiya Mere Rakhi Ke</strong> (Sister's Sacred Blessing • Harmonium &amp; Sitar)</li>
-        <li>🧵 <strong>Behna Ne Bhai Ki Kalai Se</strong> (Classic Rakhi Folk Melody • Sarangi Lead)</li>
-        <li>💛 <strong>Yeh Rakhi Bandhan Hai</strong> (Festive Anthem • Shehnai Tribute)</li>
-        <li>🎊 <strong>Mere Bhai Ki Dulhan</strong> (Joyful Celebration Raga • Tabla &amp; Bansuri)</li>
-        <li>🥁 <strong>Bollywood Dholak &amp; Tabla Beats</strong> (16-step Keherwa Rhythm @ 108 BPM)</li>
-        <li>🎺 <strong>Shehnai Mangal Dhun</strong> (Auspicious Wedding Ceremony Melody)</li>
-        <li>🕉️ <strong>Temple Tanpura &amp; Morning Raag</strong> (Sa-Pa LFO Drone &amp; Bell Chimes)</li>
-      </ul>
+      <h3>🍎 Apple Liquid Glass Aesthetics</h3>
+      <p>Engineered according to Apple Human Interface Guidelines: multi-layered translucent glass, specular edge highlights, continuous-corner squircle geometry, spring physics, and responsive bento grid layouts.</p>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🖼️ 3x High-Res PNG Card Export</h3>
-      <p>Renders a crystal-clear, print-ready digital greeting card with gold embossed borders, personalized recipient name, custom message, and an authentic royal seal.</p>
+      <h3>📜 Historical &amp; Vedic Chronicles</h3>
+      <p>Curated from authentic archives &amp; Wikipedia:
+      <br/>• <strong>Vedic Shloka</strong>: <em>येन बद्धो बलिराजा...</em> (1-click card insertion)
+      <br/>• <strong>Historical Legends</strong>: Rani Karnavati &amp; Humayun, Alexander &amp; King Porus, Tagore’s 1905 Bengal Unity Rakhis
+      <br/>• <strong>Mythological Lore</strong>: Krishna &amp; Draupadi, King Bali &amp; Lakshmi, Yama &amp; Yamuna.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>📲 1-Tap WhatsApp &amp; Deep-Link Sharing</h3>
-      <p>Instant sharing pre-configured with personalized greetings, festive emojis, and direct deep-links that reopen the exact card for the recipient.</p>
+      <h3>🎨 10 Luxury Themes &amp; Frame Borders</h3>
+      <p>Curated color palettes and foil accents: <em>Classic Festive</em>, <em>Royal Gold</em>, <em>Poetic Sunset</em>, <em>Playful Joy</em>, <em>Peacock Emerald</em>, <em>Imperial Silk</em>, <em>Vedic Shloka</em>, <em>Krishna-Draupadi</em>, <em>Rani Karnavati</em>, and <em>Tagore Harmony</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>⏳ Infinite Astronomical Lunar Engine</h3>
+      <p>Combines exact Vedic Panchang data (2024–2050) with an automated celestial lunar syzygy algorithm for all future years into infinity. Automatically updates live countdowns and auspicious <em>Shubh Muhurat</em> windows.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🖼️ 3x Ultra-HD PNG Export &amp; Deep-Links</h3>
+      <p>Instant client-side rasterization generates crisp 3x resolution print-ready digital cards. 1-tap WhatsApp sharing pre-fills festive emojis, personalized notes, and shareable deep-link URLs.</p>
     </td>
   </tr>
 </table>
 
 ---
 
-## 🎨 Interactive Card Studio
+## 🧵 6 Authentic Rakhi Motifs
+
+Choose from 6 traditionally crafted Rakhi motifs, each rendered with vector precision and animated swaying silk cords:
+
+| Motif | Symbol | Meaning &amp; Cultural Heritage |
+| :--- | :---: | :--- |
+| **Kundan Gold** | ⚜️ | Royal Rajputana gold filigree with brilliant red Kundan gemstones and pearl cluster accents. |
+| **Peacock Feather** | 🦚 | Inspired by Lord Krishna’s *Mor Pankh*—symbolizing divine grace, beauty, and protection. |
+| **Rudraksha Divine** | 🕉️ | Auspicious five-faced Shiva Rudraksha bead strung with sacred crimson &amp; gold Mauli thread. |
+| **Swastik &amp; Om** | 🔱 | Ancient Vedic symbols evoking spiritual peace, health, prosperity, and auspicious fortune. |
+| **Lumba Zari** | 🌸 | Traditional Marwari/Rajasthani decorative hanging latkan tassel crafted specially for Bhabhi. |
+| **Silver Filigree Ruby** | 💎 | Intricate silver wire filigree centering a glowing crimson ruby crystal for timeless elegance. |
+
+---
+
+## 🪈 Bollywood &amp; Flute Soundscape
+
+The platform features an intelligent, hybrid dual-engine sound architecture:
+
+```
+                  ┌──────────────────────────────────────────────┐
+                  │           FestiveSoundManager                │
+                  └──────────────────────┬───────────────────────┘
+                                         │
+                 ┌───────────────────────┴───────────────────────┐
+                 ▼                                               ▼
+   [ Default Audio File Engine ]                   [ Real-Time Web Audio Synthesizer ]
+   • Raksha Bandhan Special Flute                  • 8 Classic Bollywood Anthems
+     (Kiran Vinkar Instrumental)                   • Bansuri, Sitar, Sarangi, Harmonium
+   • Seamless Looping, Volume & Playback           • Dholak Keherwa Rhythm (108 BPM)
+   • 4m 48s Pure Devotional Melody                 • 100% Royalty-Free & DMCA-Safe
+```
+
+### 🎶 Complete Tracklist:
+1. 🪈 **Raksha Bandhan Special Flute (Default Song)** — Kiran Vinkar (Devotional Flute Melody)
+2. 🌸 **Phoolon Ka Taaron Ka** — Sibling Anthem (Bansuri Flute &amp; Santoor)
+3. 🪔 **Bhaiya Mere Rakhi Ke Bandhan** — Sister's Sacred Blessing (Harmonium &amp; Sitar)
+4. 🧵 **Behna Ne Bhai Ki Kalai Se** — Classic Rakhi Folk (Sarangi Lead)
+5. 💛 **Yeh Rakhi Bandhan Hai Aisa** — Traditional Anthem (Shehnai Lead)
+6. 🎊 **Mere Bhai Ki Dulhan Raga** — Joyful Celebration (Tabla &amp; Bansuri)
+7. 🥁 **Bollywood Dholak &amp; Tabla Beats** — 16-step Keherwa Groove @ 108 BPM
+8. 🎺 **Shehnai Mangal Dhun** — Auspicious Temple Ceremony Melody
+9. 🕉️ **Temple Tanpura &amp; Morning Raag** — Sa-Pa LFO Drone &amp; Resonant Bell Chimes
+
+---
+
+## 🍎 Apple Liquid Glass Design System
+
+Bandhan is built adhering to the core tenets of Apple interface design:
+
+- **Liquid Glass Materials**: Real-time multi-layered translucent surfaces (`backdrop-blur-md` to `backdrop-blur-2xl`) with specular reflections.
+- **Continuous-Corner Geometry**: Smooth squircle cards and capsules (`rounded-3xl`, `rounded-full`).
+- **Spring Physics Motion**: Tactile interactive buttons (`press-effect`, `animate-spring-in`, `hover:scale-[1.015]`).
+- **Accessible Typography Scale**: Clean optical tracking with *Cinzel Decorative*, *Outfit*, and native Devanagari/Tamil fonts.
+- **Bento Grid Architecture**: High-density, scannable layout highlighting Panchang, traditions, stories, and the card studio.
+
+---
+
+## 🎨 Interactive Card Studio Preview
 
 ```
  ┌──────────────────────────────────────────────────────────────────────────┐
  │                           🌼 🍃 FESTIVE TORAN 🍃 🌸                       │
  │                                                                          │
- │                     🪔  [ ANIMATED FLICKERING DIYA ]  🪔                 │
+ │                    🪔  [ ANIMATED FLICKERING DIYA ]  🪔                  │
  │                                                                          │
  │                      H A P P Y   R A K H I   2 0 2 6                     │
  │                          A Bond Beyond Words                             │
@@ -131,7 +171,8 @@ Whether your siblings are across the room or across the ocean, send personalized
  │          └──────────┘  └──────────┘  └──────────┘  └──────────┘          │
  │                                                                          │
  │       ╔════════════════════════════════════════════════════════════╗     │
- │       ║ 🪔                 [ SACRED RAKHI MOTIF ]               🪔 ║     │
+ │       ║ 🪔               [ KUNDAN GOLD RAKHI MOTIF ]            🪔 ║     │
+ │       ║                   ~ swaying silk cords ~                   ║     │
  │       ║                                                            ║     │
  │       ║                     Dearest Sibling,                       ║     │
  │       ║                                                            ║     │
@@ -158,29 +199,29 @@ Whether your siblings are across the room or across the ocean, send personalized
 
 | Domain | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Frontend Framework** | `React 18.3` | Dynamic virtual DOM, component memoization, and reactive state |
-| **Type Safety** | `TypeScript 5.8` | Strict interfaces for templates, multilingual records, and props |
-| **Bundler & Tooling** | `Vite 5.4` | Ultra-fast Hot Module Replacement (HMR) and optimized build chunks |
-| **CSS & Utilities** | `Tailwind CSS 3.4` | Responsive grid, glassmorphism utilities, and keyframe animations |
-| **Headless UI** | `Radix UI Primitives` | Accessible, robust modals, dropdowns, and interactive widgets |
-| **Iconography** | `Lucide React` | Clean, customizable modern SVG icon library |
-| **Physics & Confetti** | `canvas-confetti` | Multi-angle festive particle celebration bursts |
-| **Canvas Rasterizer** | `html-to-image` | High-fidelity, client-side 3x PNG card generation |
-| **Audio Engine** | `Web Audio API` | Pure synthesized harmonic frequencies & bell resonances |
-| **Toast Feedback** | `Sonner` | Polished toast notifications on actions, copying, and download |
+| **Framework** | `React 18.3` | Dynamic UI, state hooks, forward refs, and memoized renders |
+| **Language** | `TypeScript 5.8` | Strict typing for themes, Rakhi motifs, and multilingual records |
+| **Bundling** | `Vite 5.4` | Sub-second Hot Module Replacement and production chunk optimization |
+| **Styling** | `Tailwind CSS 3.4` | Responsive bento grid, glassmorphism utilities, keyframes |
+| **Design Language** | `Apple Design System` | Liquid Glass, spring physics, continuous squircles, tactile buttons |
+| **Components** | `Radix UI` | Accessible dialogs, primitives, dropdowns, and sliders |
+| **Audio Engine** | `Web Audio API + HTML5` | Master flute instrumental playback + real-time synth audio loops |
+| **Export Engine** | `html-to-image` | High-fidelity, client-side 3x PNG greeting card rasterization |
+| **Particle Physics**| `canvas-confetti` | Multi-angle festive flower petal and gold confetti celebration bursts |
+| **Icons** | `Lucide React` | High-legibility SVG iconography |
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- **Node.js**: v18.0.0 or higher
+- **Node.js**: `v18.0.0` or higher
 - **Package Manager**: `npm`, `pnpm`, or `bun`
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Rahul08319/code-matcher.git
-cd code-matcher
+git clone https://github.com/Rahul08319/Raksha_Bandhan.git
+cd Raksha_Bandhan
 ```
 
 ### 2. Install Dependencies
@@ -188,7 +229,7 @@ cd code-matcher
 npm install
 ```
 
-### 3. Run the Development Server
+### 3. Start Development Server
 ```bash
 npm run dev
 ```
@@ -198,32 +239,37 @@ Open your browser at `http://localhost:5173`.
 ```bash
 npm run build
 ```
-Optimized assets will be generated in the `dist/` directory.
+Optimized static assets will be output to the `dist/` directory.
 
 ---
 
-## 📂 Directory Layout
+## 📂 Project Structure
 
 ```
-code-matcher/
+Raksha_Bandhan/
 ├── banner.svg                    # Vector artwork hero banner for GitHub
 ├── index.html                    # Root HTML with Google Fonts preloading
 ├── package.json                  # Scripts and package dependencies
 ├── tailwind.config.ts            # Custom colors, keyframes, and themes
 ├── vite.config.ts                # Vite bundler configuration
 ├── public/                       # Static public assets
-│   └── rakhi-banner.svg          # High-resolution banner
+│   ├── rakhi-banner.svg          # High-resolution banner
+│   └── audio/
+│       └── raksha-bandhan-special-flute.mp3 # Default Flute Instrumental
 └── src/
     ├── App.tsx                   # QueryClient, Toasters, and Router
     ├── index.css                 # Festive CSS variables, animations, and typography
     ├── main.tsx                  # React DOM root entry
     ├── components/
-    │   ├── FestiveDecorations.tsx # Rakhi motif, Diya, Mandala, & Toran SVGs
+    │   ├── FestiveDecorations.tsx# 6 Rakhi Motifs, Diya, Mandala, & Toran SVGs
+    │   ├── FestiveJukebox.tsx    # Floating Apple Liquid Glass Music Player
+    │   ├── FestivalChronicles.tsx# Wikipedia & Vedic History Accordion
+    │   ├── RakhiCeremonyModal.tsx# 4-Step Interactive Virtual Ceremony
     │   └── ui/                   # Button, Input, Sonner, and Radix components
     ├── lib/
-    │   ├── rakhi-dates.ts        # Dynamic festival calendar algorithm (2024–2035)
-    │   ├── rakhi-i18n.ts         # Multilingual translations, 6 themes & stickers
-    │   ├── soundEffects.ts       # Web Audio API chime synthesis
+    │   ├── rakhi-dates.ts        # Infinite astronomical festival calendar engine
+    │   ├── rakhi-i18n.ts         # Translations, 10 themes, 6 Rakhi motifs & stickers
+    │   ├── soundEffects.ts       # Hybrid audio engine (flute track + synth raags)
     │   └── utils.ts              # Tailwind class merging utility (cn)
     └── pages/
         ├── Index.tsx             # Main festival studio, customizer & card display
@@ -236,48 +282,54 @@ code-matcher/
 
 Every language is natively translated with culturally authentic greetings:
 
-| Code | Language | Native Name | Sample Verse |
+| Code | Language | Native Name | Sample Blessing |
 | :---: | :--- | :--- | :--- |
-| `en` | English | English | *"We gain and lose things every day — but you'll never lose me."* |
-| `hi` | Hindi | हिन्दी | *"प्रेम, रक्षा और अनगिनत यादों का पवित्र धागा। हैप्पी राखी!"* |
+| `en` | English | English | *"Across every distance and season of life, you remain my greatest guardian and truest friend."* |
+| `hi` | Hindi | हिन्दी | *"प्रेम, रक्षा और अनगिनत यादों का पवित्र धागा। हैप्पी रक्षाबंधन!"* |
 | `mr` | Marathi | मराठी | *"शब्दांपलीकडचं नातं, प्रेमाचा पवित्र धागा... हॅप्पी रक्षाबंधन!"* |
-| `gu` | Gujarati | ગુજરાતી | *"પ્રેમ, રક્ષા અને અસંખ્ય યાદોનો પવિત્ર દોરો. હેપી રાખી!"* |
+| `gu` | Gujarati | ગુજરાતી | *"પ્રેમ, રક્ષા અને અસંખ્ય યાદોનો પવित્ર દોરો. હેપી રાખી!"* |
 | `ta` | Tamil | தமிழ் | *"அன்பு, பாதுகாப்பு மற்றும் நினைவுகளின் புனித நூல்... வாழ்த்துகள்!"* |
 
 ---
 
 ## 🔗 Deep-Linking URL Parameters
 
-Share a customized card that opens directly with your personalization using URL parameters:
+Generate personalized cards directly via URL query parameters:
 
 ```
-https://<domain>/?bl=Aarav&lang=hi&tpl=royal&stk=diya,lotus,tilak&msg=You%20are%20the%20best!
+https://<domain>/?bl=Aarav&lang=hi&tpl=royal&rk=peacock&ttl=partner&bdr=gold&msg=Happy%20Rakhi!
 ```
 
-- `bl`: Recipient's name (spaces automatically replaced with `-`)
-- `lang`: Language code (`en`, `hi`, `mr`, `gu`, `ta`)
-- `tpl`: Theme identifier (`classic`, `royal`, `poetic`, `playful`, `peacock`, `silk`)
-- `stk`: Comma-separated sticker IDs (`diya`, `lotus`, `mithai`, `tilak`, `gift`, `heart`)
-- `msg`: Optional custom handwritten greeting
+| Parameter | Type | Description | Example Values |
+| :--- | :--- | :--- | :--- |
+| `bl` | `string` | Recipient's name (spaces converted to `-`) | `Aarav`, `Priya-Sharma` |
+| `lang` | `string` | Language code | `en`, `hi`, `mr`, `gu`, `ta` |
+| `tpl` | `string` | Theme identifier | `classic`, `royal`, `poetic`, `peacock`, `karnavati` |
+| `rk` | `string` | Rakhi motif design | `kundan`, `peacock`, `rudraksha`, `om`, `lumba`, `ruby` |
+| `ttl` | `string` | Honorary sibling title | `partner`, `guardian`, `secret`, `bestie`, `royalty` |
+| `bdr` | `string` | Border frame style | `gold`, `marigold`, `peacock`, `crimson` |
+| `stk` | `string` | Comma-separated sticker IDs | `diya,lotus,mithai,tilak` |
+| `msg` | `string` | Custom personalized blessing message | URL-encoded text |
+| `yr` | `number` | Festival year override | `2026`, `2027` |
 
 ---
 
 ## 🤝 Contributing
 
-We welcome community contributions, additional language translations, and new decorative themes!
+Contributions, feedback, and new cultural lore/motifs are warmly welcomed!
 
-1. **Fork** the project
-2. **Create your feature branch**:
+1. **Fork** the repository
+2. **Create a branch**:
    ```bash
-   git checkout -b feature/NewFestiveTheme
+   git checkout -b feature/NewFestiveFeature
    ```
 3. **Commit your changes**:
    ```bash
-   git commit -m "feat: add NewFestiveTheme with lotus ornaments"
+   git commit -m "feat: add new traditional motif or theme"
    ```
 4. **Push to your branch**:
    ```bash
-   git push origin feature/NewFestiveTheme
+   git push origin feature/NewFestiveFeature
    ```
 5. **Open a Pull Request**
 
@@ -290,5 +342,5 @@ Distributed under the **MIT License**. Feel free to use, modify, and distribute 
 <br />
 
 <div align="center">
-  <sub>🪔 Crafted with heartfelt love for brothers &amp; sisters everywhere • Celebrating Raksha Bandhan 🪔</sub>
+  <sub>🪔 Crafted with heartfelt love for brothers &amp; sisters across the globe • Celebrating Raksha Bandhan 🪔</sub>
 </div>
