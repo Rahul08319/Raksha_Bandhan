@@ -47,6 +47,7 @@ import {
   CornerFiligree,
 } from "@/components/FestiveDecorations";
 import { RakhiCeremonyModal } from "@/components/RakhiCeremonyModal";
+import { FestiveJukebox } from "@/components/FestiveJukebox";
 
 // Live Countdown hook
 const useCountdown = (target: number) => {
@@ -394,21 +395,8 @@ const Index = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* Ambient Music Button */}
-            <button
-              onClick={toggleAmbientMusic}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-xs font-bold backdrop-blur transition hover:scale-105 ${
-                ambientMusicOn
-                  ? "border-amber-500 bg-amber-500/20 text-amber-600 dark:text-amber-400 shadow-glow"
-                  : "border-amber-500/30 bg-card/70 text-muted-foreground hover:text-foreground"
-              }`}
-              title="Toggle ambient Indian temple sitar drone"
-            >
-              <Music className={`h-3.5 w-3.5 ${ambientMusicOn ? "animate-pulse" : ""}`} />
-              <span className="hidden sm:inline">
-                {ambientMusicOn ? "Music Playing 🎶" : "Ambient Sitar"}
-              </span>
-            </button>
+            {/* Festive Bollywood Jukebox */}
+            <FestiveJukebox />
 
             {/* Sound Chimes Toggle */}
             <button
@@ -497,6 +485,24 @@ const Index = () => {
             >
               <Sparkles className="mr-2 h-5 w-5 animate-spin-slow" />
               Start Virtual Rakhi Ceremony 🪔
+            </Button>
+            <Button
+              type="button"
+              onClick={() => {
+                const playing = festiveAudio.activeTrackId;
+                if (playing) {
+                  festiveAudio.stopMusic();
+                  toast.info("Music paused");
+                } else {
+                  festiveAudio.playTrack("phoolon");
+                  toast.success("Playing 🌸 Phoolon Ka Taaron Ka (Synthesized Bollywood Tribute)!");
+                }
+              }}
+              variant="outline"
+              className="h-12 px-5 rounded-2xl border-amber-500/40 bg-card/80 text-sm font-bold text-foreground shadow-sm hover:border-amber-500 hover:bg-card transition flex items-center gap-2"
+            >
+              <Music className="h-4 w-4 text-amber-500 animate-pulse" />
+              <span>Bollywood Song 🎶</span>
             </Button>
             <Button
               type="button"

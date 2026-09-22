@@ -77,8 +77,14 @@ Whether your siblings are across the room or across the ocean, send personalized
       <p><strong>Never goes out of date!</strong> Combines verified Vedic Panchang records (2024–2050) with an <em>Astronomical Syzygy (Full Moon)</em> lunar engine for all future years into infinity. The minute festival day ends, the app automatically advances to the upcoming year, recalculates the date, and resets the countdown.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🎶 Synthesized Audio Chimes &amp; Sitar Drone</h3>
-      <p>Zero external MP3 dependencies! In-browser Web Audio API generates temple chimes, celebratory chords, and an optional soothing Indian tanpura/sitar drone harmony.</p>
+      <h3>🎶 Festive Bollywood Jukebox &amp; Beats</h3>
+      <p><strong>100% Copyright-Free &amp; Royalty-Free!</strong> Real-time synthesized acoustic musical tributes and festive Indian percussion loops:</p>
+      <ul>
+        <li>🌸 <strong>Phoolon Ka Taaron Ka</strong> (Acoustic Sitar Tribute • Sibling Anthem)</li>
+        <li>🥁 <strong>Festive Bollywood Dholak &amp; Tabla</strong> (Celebratory 108 BPM Keherwa Rhythm)</li>
+        <li>🪔 <strong>Bhaiya Mere Rakhi Ke</strong> (Sacred Sister's Blessing Melody)</li>
+        <li>🕉️ <strong>Temple Sitar &amp; Morning Tanpura</strong> (Meditative Vedic Ambiance)</li>
+      </ul>
     </td>
   </tr>
   <tr>
