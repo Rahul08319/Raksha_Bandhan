@@ -217,4 +217,61 @@ export const TEMPLATES: WishTemplate[] = [
       ta: "சண்டைகள்? ஆம். ரகசியங்கள்? நிறைய. அன்பு? எல்லையற்றது. சிறந்த சகோதர/சகோதரிக்கு வாழ்த்துகள்! 🎉",
     },
   },
+  {
+    id: "peacock",
+    name: "Peacock Emerald",
+    gradient: "bg-gradient-peacock",
+    accent: "text-emerald-600 dark:text-emerald-400 font-bold",
+    emoji: "🦚",
+    messages: {
+      en: "May the divine blessings of Raksha Bandhan bring peace, boundless happiness, and triumph to your journey. 🦚",
+      hi: "रक्षा बंधन का यह पावन पर्व आपके जीवन में सुख, शांति और अनंत खुशियाँ लेकर आए। 🦚",
+      mr: "रक्षाबंधनाचा हा पवित्र सण तुमच्या आयुष्यात सुख, समृद्धी आणि यश घेऊन येवो. 🦚",
+      gu: "રક્ષાબંધનનો આ પવિત્ર તહેવાર તમારા જીવનમાં સુખ, શાંતિ અને સમૃદ્ધિ લાવે. 🦚",
+      ta: "ரக்ஷா பந்தனின் புனித ஆசீர்வாதம் உங்கள் வாழ்வில் அமைதியையும் எல்லையற்ற மகிழ்ச்சியையும் தரட்டும். 🦚",
+    },
+  },
+  {
+    id: "silk",
+    name: "Imperial Silk",
+    gradient: "bg-gradient-silk",
+    accent: "text-purple-600 dark:text-purple-400 font-bold",
+    emoji: "🪷",
+    messages: {
+      en: "Across every distance and season of life, you remain my greatest guardian and my truest lifelong friend. 💖",
+      hi: "चाहे कितनी भी दूरी हो, हर मोड़ पर आप मेरे सबसे बड़े रक्षक और सबसे सच्चे दोस्त रहेंगे। 💖",
+      mr: "अंतर कितीही असो, प्रत्येक क्षणी तूच माझा सर्वात मोठा पाठीराखा आणि खरा मित्र आहेस. 💖",
+      gu: "ભલે ગમે તેટલું અંતર હોય, જીવનના દરેક વળાંક પર તમે મારા સૌથી મોટા સહાયક છો. 💖",
+      ta: "எவ்வளவு தூரமிருந்தாலும், என் வாழ்வின் மிகப்பெரிய பாதுகாப்பும் உண்மையான நண்பனும் நீங்களே. 💖",
+    },
+  },
 ];
+
+export const CARD_STICKERS = [
+  { id: "diya", emoji: "🪔", label: "Diya" },
+  { id: "lotus", emoji: "🪷", label: "Lotus" },
+  { id: "mithai", emoji: "🍬", label: "Mithai" },
+  { id: "tilak", emoji: "🔴", label: "Tilak" },
+  { id: "gift", emoji: "🎁", label: "Gift" },
+  { id: "heart", emoji: "💖", label: "Love" },
+  { id: "sparkle", emoji: "✨", label: "Sparkles" },
+];
+
+export const SIBLING_TITLES = [
+  { id: "partner", label: "Partner in Crime 🕵️", tag: "PARTNER IN CRIME" },
+  { id: "protector", label: "The Guardian & Shield 🛡️", tag: "MY GUARDIAN" },
+  { id: "secret", label: "Secret Keeper 🤫", tag: "VAULT OF SECRETS" },
+  { id: "bestie", label: "Forever Best Friend 💖", tag: "LIFELONG BESTIE" },
+  { id: "royalty", label: "Drama Royalty 👑", tag: "DRAMA MONARCH" },
+  { id: "snacker", label: "Midnight Snack Raider 🍕", tag: "SNACK PARTNER" },
+  { id: "wise", label: "The Wise Counselor 🦉", tag: "CHIEF ADVISOR" },
+];
+
+export const BORDER_STYLES = [
+  { id: "gold", label: "Royal Gold Foil", borderClass: "border-amber-400/60 shadow-glow" },
+  { id: "marigold", label: "Marigold Blossom", borderClass: "border-orange-500/70 shadow-festive" },
+  { id: "peacock", label: "Peacock Emerald", borderClass: "border-emerald-500/70 shadow-glow" },
+  { id: "kundan", label: "Imperial Crimson", borderClass: "border-rose-500/70 shadow-festive" },
+];
+
+
