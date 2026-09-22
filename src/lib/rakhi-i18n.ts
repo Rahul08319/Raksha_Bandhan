@@ -330,4 +330,21 @@ export const BORDER_STYLES = [
   { id: "kundan", label: "Imperial Crimson", borderClass: "border-rose-500/70 shadow-festive" },
 ];
 
+export interface RakhiDesign {
+  id: string;
+  name: string;
+  emoji: string;
+  tag: string;
+  desc: string;
+}
+
+export const RAKHI_DESIGNS: RakhiDesign[] = [
+  { id: "kundan", name: "Royal Kundan Lotus", emoji: "🪷", tag: "ROYAL KUNDAN", desc: "Classic golden lotus with centerpiece jewel" },
+  { id: "peacock", name: "Mayur Pankh Krishna", emoji: "🦚", tag: "MAYUR PANKH", desc: "Divine peacock feather with emerald core" },
+  { id: "rudraksha", name: "Sacred Rudraksha", emoji: "📿", tag: "VEDIC RUDRAKSHA", desc: "Auspicious beads with saffron kalawa dori" },
+  { id: "om", name: "Divine Om & Pearl", emoji: "🕉️", tag: "DIVINE ॐ", desc: "Sacred Om medallion with pearl border" },
+  { id: "lumba", name: "Zari & Jhumka Lumba", emoji: "✨", tag: "RAJASTHANI LUMBA", desc: "Traditional hanging tassels & bells" },
+  { id: "ruby", name: "Silver Filigree Ruby", emoji: "💎", tag: "SILVER RUBY", desc: "Fine silver lace wirework & radiant gem" },
+];
+
 

@@ -3,18 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Sparkles, Check, RotateCcw, X, Heart, Award } from "lucide-react";
 import confetti from "canvas-confetti";
 import { festiveAudio } from "@/lib/soundEffects";
-import { SacredRakhiMotif, AuspiciousDiya } from "@/components/FestiveDecorations";
+import { RakhiMotifRenderer, AuspiciousDiya } from "@/components/FestiveDecorations";
 
 interface RakhiCeremonyProps {
   siblingName: string;
   isOpen: boolean;
   onClose: () => void;
+  rakhiDesignId?: string;
 }
 
 export const RakhiCeremonyModal: React.FC<RakhiCeremonyProps> = ({
   siblingName,
   isOpen,
   onClose,
+  rakhiDesignId = "kundan",
 }) => {
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [aartiRotations, setAartiRotations] = useState(0);
@@ -231,7 +233,7 @@ export const RakhiCeremonyModal: React.FC<RakhiCeremonyProps> = ({
                   </div>
                 ) : (
                   <div className="flex flex-col items-center">
-                    <SacredRakhiMotif className="w-20 h-20 group-hover:scale-110 transition-transform" />
+                    <RakhiMotifRenderer designId={rakhiDesignId} className="w-20 h-20 group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-amber-700 dark:text-amber-300 mt-1">
                       Tap to Tie Rakhi
                     </span>

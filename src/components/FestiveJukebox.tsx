@@ -84,7 +84,7 @@ export const FestiveJukebox: React.FC = () => {
         ) : (
           <span className="flex items-center gap-1.5">
             <Music className="h-3.5 w-3.5 text-primary" />
-            <span>Bollywood Songs (8)</span>
+            <span>Bollywood &amp; Flute ({FESTIVE_TRACKS.length})</span>
           </span>
         )}
       </button>
@@ -104,12 +104,12 @@ export const FestiveJukebox: React.FC = () => {
               <div>
                 <h4 className="font-cinzel text-sm font-bold text-foreground flex items-center gap-1.5">
                   <span>Bollywood Jukebox</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-sans font-extrabold border border-emerald-500/30">
-                    Safe
+                  <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 font-sans font-extrabold border border-amber-500/30">
+                    Default Flute Active
                   </span>
                 </h4>
                 <p className="text-[10px] text-muted-foreground">
-                  100% Royalty-Free Synthesized Rakhi Anthems &amp; Beats
+                  Special Flute Instrumental &amp; Royalty-Free Rakhi Anthems
                 </p>
               </div>
             </div>

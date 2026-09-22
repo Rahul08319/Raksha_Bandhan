@@ -42,6 +42,7 @@ import {
   CARD_STICKERS,
   SIBLING_TITLES,
   BORDER_STYLES,
+  RAKHI_DESIGNS,
   t as translations,
   type Lang,
   type WishTemplate,
@@ -50,6 +51,7 @@ import { getNextRakhi } from "@/lib/rakhi-dates";
 import { festiveAudio } from "@/lib/soundEffects";
 import {
   SacredRakhiMotif,
+  RakhiMotifRenderer,
   AuspiciousDiya,
   AmbientMandala,
   FestiveToran,
@@ -319,6 +321,7 @@ const Index = () => {
   const [isCeremonyOpen, setIsCeremonyOpen] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState<string>("partner");
   const [selectedBorder, setSelectedBorder] = useState<string>("gold");
+  const [selectedRakhiDesign, setSelectedRakhiDesign] = useState<string>("kundan");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [navScrolled, setNavScrolled] = useState(false);
   const [heroMounted, setHeroMounted] = useState(false);
@@ -345,12 +348,14 @@ const Index = () => {
     const stk  = params.get("stk");
     const ttl  = params.get("ttl");
     const bdr  = params.get("bdr");
+    const rk   = params.get("rk");
     const yr   = params.get("yr");
 
     if (lp  && LANGS.some((l) => l.code === lp))             setLang(lp);
     if (tp  && TEMPLATES.some((x) => x.id === tp))           setTemplateId(tp);
     if (ttl && SIBLING_TITLES.some((s) => s.id === ttl))     setSelectedTitle(ttl);
     if (bdr && BORDER_STYLES.some((b) => b.id === bdr))      setSelectedBorder(bdr);
+    if (rk  && RAKHI_DESIGNS.some((d) => d.id === rk))       setSelectedRakhiDesign(rk);
     if (yr  && !isNaN(Number(yr)))                            setSelectedYear(Number(yr));
     if (msg) { setCustomMessage(decodeURIComponent(msg)); setUseCustomMessage(true); }
     if (stk) {
@@ -431,9 +436,10 @@ const Index = () => {
     if (selectedStickers.length > 0) url += `&stk=${encodeURIComponent(selectedStickers.join(","))}`;
     if (selectedTitle) url += `&ttl=${encodeURIComponent(selectedTitle)}`;
     if (selectedBorder) url += `&bdr=${encodeURIComponent(selectedBorder)}`;
+    if (selectedRakhiDesign) url += `&rk=${encodeURIComponent(selectedRakhiDesign)}`;
     if (selectedYear) url += `&yr=${encodeURIComponent(selectedYear)}`;
     return url;
-  }, [recipientName, lang, template.id, useCustomMessage, customMessage, selectedStickers, selectedTitle, selectedBorder, selectedYear]);
+  }, [recipientName, lang, template.id, useCustomMessage, customMessage, selectedStickers, selectedTitle, selectedBorder, selectedRakhiDesign, selectedYear]);
 
   const activeMessage = useCustomMessage && customMessage.trim() ? customMessage.trim() : template.messages[lang];
 
@@ -658,14 +664,19 @@ const Index = () => {
               type="button"
               onClick={() => {
                 const playing = festiveAudio.activeTrackId;
-                if (playing) { festiveAudio.stopMusic(); toast.info("Music paused"); }
-                else { festiveAudio.playTrack("phoolon"); toast.success("🌸 Playing Bollywood tribute!"); }
+                if (playing) {
+                  festiveAudio.stopMusic();
+                  toast.info("Music paused ⏸️");
+                } else {
+                  festiveAudio.playTrack("flute_default");
+                  toast.success("🪈 Playing Raksha Bandhan Special Flute (Default Song)! 🎶");
+                }
               }}
               variant="outline"
               className="h-13 px-5 rounded-2xl glass border-amber-400/30 text-sm font-bold text-foreground hover:border-amber-400 press-effect transition-all"
             >
               <Music className="h-4 w-4 text-amber-500 mr-2" aria-hidden="true" />
-              Bollywood Song 🎶
+              {festiveAudio.activeTrackId ? "Pause Track ⏸️" : "Raksha Bandhan Flute 🪈"}
             </Button>
 
             <Button
@@ -812,6 +823,42 @@ const Index = () => {
                           }`}
                         >
                           {st.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sacred Rakhi Motif Design */}
+                  <div className="space-y-2 pt-4 border-t border-amber-500/12">
+                    <div className="flex items-center justify-between">
+                      <label className="text-xs font-black uppercase tracking-widest text-muted-foreground flex items-center gap-1.5">
+                        <Sparkles className="h-3.5 w-3.5 text-amber-500" aria-hidden="true" />
+                        Rakhi Motif ({RAKHI_DESIGNS.length} Designs)
+                      </label>
+                      <span className="text-[10px] text-muted-foreground font-semibold hidden sm:inline">
+                        {RAKHI_DESIGNS.find((d) => d.id === selectedRakhiDesign)?.meaning}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {RAKHI_DESIGNS.map((design) => (
+                        <button
+                          key={design.id}
+                          type="button"
+                          onClick={() => {
+                            festiveAudio.playSparkle();
+                            setSelectedRakhiDesign(design.id);
+                          }}
+                          className={`rounded-2xl border-2 p-2.5 text-left transition-all press-effect flex flex-col gap-1 ${
+                            selectedRakhiDesign === design.id
+                              ? "border-amber-500 bg-amber-500/20 shadow-glow-sm"
+                              : "border-transparent glass hover:border-amber-400/40"
+                          }`}
+                        >
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-lg">{design.emoji}</span>
+                            <span className="text-xs font-bold truncate text-foreground">{design.name}</span>
+                          </div>
+                          <span className="text-[10px] text-muted-foreground line-clamp-1">{design.description}</span>
                         </button>
                       ))}
                     </div>
@@ -1002,6 +1049,7 @@ const Index = () => {
                   selectedStickers={selectedStickers}
                   selectedTitle={selectedTitle}
                   selectedBorder={selectedBorder}
+                  selectedRakhiDesign={selectedRakhiDesign}
                   onTriggerFestive={fireFestiveConfetti}
                 />
 
@@ -1198,6 +1246,7 @@ const Index = () => {
         siblingName={recipientName || "Sibling"}
         isOpen={isCeremonyOpen}
         onClose={() => setIsCeremonyOpen(false)}
+        rakhiDesignId={selectedRakhiDesign}
       />
     </main>
   );
@@ -1217,11 +1266,12 @@ type WishCardProps = {
   selectedStickers: string[];
   selectedTitle?: string;
   selectedBorder?: string;
+  selectedRakhiDesign?: string;
   onTriggerFestive?: () => void;
 };
 
 const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
-  ({ name, template, lang, T, langFontClass, year, customMessage, selectedStickers, selectedTitle, selectedBorder, onTriggerFestive }, ref) => {
+  ({ name, template, lang, T, langFontClass, year, customMessage, selectedStickers, selectedTitle, selectedBorder, selectedRakhiDesign, onTriggerFestive }, ref) => {
     const titleObj  = SIBLING_TITLES.find((t) => t.id === selectedTitle);
     const borderObj = BORDER_STYLES.find((b) => b.id === selectedBorder);
 
@@ -1257,7 +1307,10 @@ const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
 
           {/* Centerpiece rakhi motif */}
           <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-amber-500/15 animate-pulse-glow sm:h-32 sm:w-32">
-            <SacredRakhiMotif className="w-24 h-24 sm:w-28 sm:h-28" />
+            <RakhiMotifRenderer
+              designId={selectedRakhiDesign || "kundan"}
+              className="w-24 h-24 sm:w-28 sm:h-28"
+            />
           </div>
 
           {/* Honorary title badge */}

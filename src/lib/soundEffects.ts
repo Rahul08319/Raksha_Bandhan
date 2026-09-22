@@ -12,9 +12,20 @@ export interface FestiveTrack {
   emoji: string;
   bpm?: number;
   duration?: string;
+  audioUrl?: string;
 }
 
 export const FESTIVE_TRACKS: FestiveTrack[] = [
+  {
+    id: "flute_default",
+    name: "Raksha Bandhan Special Flute",
+    subtitle: "Kiran Vinkar • Devotional Flute Instrumental (Default)",
+    category: "Bollywood Melody",
+    emoji: "🪈",
+    audioUrl: "/audio/raksha-bandhan-special-flute.mp3",
+    bpm: 86,
+    duration: "4:48",
+  },
   {
     id: "phoolon",
     name: "Phoolon Ka Taaron Ka",
@@ -178,6 +189,7 @@ class FestiveSoundManager {
   private activeOscillators: (OscillatorNode | AudioBufferSourceNode)[] = [];
   private masterGain: GainNode | null = null;
   private volume: number = 0.55;
+  private audioElement: HTMLAudioElement | null = null;
 
   // ── Audio context (lazy init) ──────────────────────────────────────────
   private getContext(): AudioContext | null {
@@ -563,15 +575,41 @@ class FestiveSoundManager {
 
   // ── Public: play a track ───────────────────────────────────────────────
   public playTrack(trackId: string): boolean {
-    const ctx = this.getContext();
-    if (!ctx) return false;
-
     if (this.currentPlayingTrack === trackId) {
       this.stopMusic();
       return false;
     }
 
     this.stopMusic();
+
+    const track = FESTIVE_TRACKS.find((t) => t.id === trackId);
+
+    // If track has a direct audio file (e.g. uploaded default flute instrumental)
+    if (track && track.audioUrl) {
+      this.currentPlayingTrack = trackId;
+      try {
+        if (!this.audioElement) {
+          this.audioElement = new Audio(track.audioUrl);
+        } else {
+          this.audioElement.src = track.audioUrl;
+        }
+        this.audioElement.loop = true;
+        this.audioElement.volume = this.volume;
+        const playPromise = this.audioElement.play();
+        if (playPromise !== undefined) {
+          playPromise.catch((err) => {
+            console.warn("Audio element playback failed/blocked:", err);
+          });
+        }
+        return true;
+      } catch (err) {
+        console.warn("Failed to play audio element:", err);
+      }
+    }
+
+    const ctx = this.getContext();
+    if (!ctx) return false;
+
     this.currentPlayingTrack = trackId;
 
     this.masterGain = ctx.createGain();
@@ -580,6 +618,9 @@ class FestiveSoundManager {
     this.masterGain.connect(ctx.destination);
 
     switch (trackId) {
+      case "flute_default":
+        this.startMelodySequence(ctx, PHOOLON_NOTES, "flute", true, true);
+        break;
       case "phoolon":
         this.startMelodySequence(ctx, PHOOLON_NOTES, "flute",    true, true);
         break;
@@ -613,6 +654,12 @@ class FestiveSoundManager {
 
   // ── Public: stop ──────────────────────────────────────────────────────
   public stopMusic() {
+    if (this.audioElement) {
+      try {
+        this.audioElement.pause();
+        this.audioElement.currentTime = 0;
+      } catch { /* ignore */ }
+    }
     if (this.musicTimeout) { clearTimeout(this.musicTimeout); this.musicTimeout = null; }
     this.activeOscillators.forEach((node) => {
       try { if ("stop" in node) node.stop(); node.disconnect(); } catch { /* ignore */ }
@@ -626,13 +673,16 @@ class FestiveSoundManager {
   // ── Compat ─────────────────────────────────────────────────────────────
   public toggleAmbientMusic(): boolean {
     if (this.currentPlayingTrack) { this.stopMusic(); return false; }
-    return this.playTrack("phoolon");
+    return this.playTrack("flute_default");
   }
 
   public get activeTrackId(): string | null { return this.currentPlayingTrack; }
 
   public setVolume(vol: number) {
     this.volume = Math.max(0, Math.min(1, vol));
+    if (this.audioElement) {
+      this.audioElement.volume = this.volume;
+    }
     if (this.masterGain && this.ctx) {
       this.masterGain.gain.setValueAtTime(this.volume, this.ctx.currentTime);
     }
