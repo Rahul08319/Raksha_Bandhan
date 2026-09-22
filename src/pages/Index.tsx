@@ -22,6 +22,7 @@ import {
   Heart,
   Palette,
   Clock,
+  Calendar,
 } from "lucide-react";
 import { toPng } from "html-to-image";
 import confetti from "canvas-confetti";
@@ -141,8 +142,12 @@ const Index = () => {
   const [isCeremonyOpen, setIsCeremonyOpen] = useState(false);
   const [selectedTitle, setSelectedTitle] = useState<string>("partner");
   const [selectedBorder, setSelectedBorder] = useState<string>("gold");
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
-  const rakhi = useMemo(() => getNextRakhi(Date.now(), lang), [lang]);
+  const rakhi = useMemo(
+    () => getNextRakhi(Date.now(), lang, selectedYear),
+    [lang, selectedYear]
+  );
   const { days, hours, minutes, seconds, done } = useCountdown(rakhi.date.getTime());
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -164,11 +169,13 @@ const Index = () => {
     const stk = params.get("stk");
     const ttl = params.get("ttl");
     const bdr = params.get("bdr");
+    const yr = params.get("yr");
 
     if (lp && LANGS.some((l) => l.code === lp)) setLang(lp);
     if (tp && TEMPLATES.some((x) => x.id === tp)) setTemplateId(tp);
     if (ttl && SIBLING_TITLES.some((s) => s.id === ttl)) setSelectedTitle(ttl);
     if (bdr && BORDER_STYLES.some((b) => b.id === bdr)) setSelectedBorder(bdr);
+    if (yr && !isNaN(Number(yr))) setSelectedYear(Number(yr));
     if (msg) {
       setCustomMessage(decodeURIComponent(msg));
       setUseCustomMessage(true);
@@ -265,6 +272,9 @@ const Index = () => {
     }
     if (selectedBorder) {
       url += `&bdr=${encodeURIComponent(selectedBorder)}`;
+    }
+    if (selectedYear) {
+      url += `&yr=${encodeURIComponent(selectedYear)}`;
     }
     return url;
   };
@@ -528,6 +538,48 @@ const Index = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Automatic Year Rollover & Multi-Year Preview Controls */}
+            <div className="mt-4 pt-3 border-t border-border/50 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1.5 font-semibold text-foreground">
+                <Calendar className="h-3.5 w-3.5 text-primary" />
+                <span>Festival Year:</span>
+              </span>
+              <div className="flex flex-wrap items-center gap-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    festiveAudio.playSparkle();
+                    setSelectedYear(null);
+                  }}
+                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition ${
+                    selectedYear === null
+                      ? "bg-gradient-gold text-amber-950 shadow-sm"
+                      : "bg-background/60 hover:text-foreground border border-border/60"
+                  }`}
+                  title="Automatically calculates the upcoming Raksha Bandhan date for all future years"
+                >
+                  ⚡ Auto (Upcoming)
+                </button>
+                {[2026, 2027, 2028, 2029, 2030, 2031, 2032].map((y) => (
+                  <button
+                    key={y}
+                    type="button"
+                    onClick={() => {
+                      festiveAudio.playSparkle();
+                      setSelectedYear(y);
+                    }}
+                    className={`px-2.5 py-1 rounded-full text-xs font-bold transition ${
+                      selectedYear === y
+                        ? "bg-amber-500 text-amber-950 shadow-sm"
+                        : "bg-background/60 hover:text-foreground border border-border/60"
+                    }`}
+                  >
+                    {y}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </section>

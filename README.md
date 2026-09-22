@@ -73,8 +73,8 @@ Whether your siblings are across the room or across the ocean, send personalized
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>⏳ Shravana Purnima Countdown &amp; Muhurat</h3>
-      <p>Astronomically calculated countdown (2024 through 2035+) paired with a Vedic <strong>Shubh Muhurat Guide</strong> detailing Aparahna Kaal, Pradosh Kaal, and Purnima Tithi timings.</p>
+      <h3>⏳ Self-Updating Astronomical Calendar Engine</h3>
+      <p><strong>Never goes out of date!</strong> Combines verified Vedic Panchang records (2024–2050) with an <em>Astronomical Syzygy (Full Moon)</em> lunar engine for all future years into infinity. The minute festival day ends, the app automatically advances to the upcoming year, recalculates the date, and resets the countdown.</p>
     </td>
     <td width="50%" valign="top">
       <h3>🎶 Synthesized Audio Chimes &amp; Sitar Drone</h3>
