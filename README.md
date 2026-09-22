@@ -48,8 +48,8 @@ Whether your siblings are celebrating together or separated by continents, send 
 <table width="100%">
   <tr>
     <td width="50%" valign="top">
-      <h3>🪈 Default Flute Instrumental &amp; Bollywood Jukebox</h3>
-      <p>Features <strong>Raksha Bandhan Special Flute Instrumental</strong> (by Kiran Vinkar) as the default soundscape. Accompanied by 8 copyright-free synthesized Bollywood classics (<em>Phoolon Ka Taaron Ka</em>, <em>Bhaiya Mere Rakhi Ke</em>, <em>Behna Ne Bhai Ki</em>, festive Dholak rhythms, and Shehnai).</p>
+      <h3>🪈 Dedicated Flute Instrumental Soundscape</h3>
+      <p>Features <strong>Raksha Bandhan Special Flute Instrumental</strong> (by Kiran Vinkar, 4m 48s) as the dedicated festival soundscape with continuous atmospheric looping, interactive equalizer waves, and an Apple Dynamic Island capsule player.</p>
     </td>
     <td width="50%" valign="top">
       <h3>🧵 6 Authentic Rakhi Motifs with Physics Sway</h3>
@@ -112,9 +112,9 @@ Choose from 6 traditionally crafted Rakhi motifs, each rendered with vector prec
 
 ---
 
-## 🪈 Bollywood &amp; Flute Soundscape
+## 🪈 Dedicated Festival Flute Soundscape
 
-The platform features an intelligent, hybrid dual-engine sound architecture:
+The platform features a dedicated high-fidelity soundscape:
 
 ```
                   ┌──────────────────────────────────────────────┐
@@ -123,23 +123,16 @@ The platform features an intelligent, hybrid dual-engine sound architecture:
                                          │
                  ┌───────────────────────┴───────────────────────┐
                  ▼                                               ▼
-   [ Default Audio File Engine ]                   [ Real-Time Web Audio Synthesizer ]
-   • Raksha Bandhan Special Flute                  • 8 Classic Bollywood Anthems
-     (Kiran Vinkar Instrumental)                   • Bansuri, Sitar, Sarangi, Harmonium
-   • Seamless Looping, Volume & Playback           • Dholak Keherwa Rhythm (108 BPM)
+   [ Master Flute Audio Engine ]                   [ Web Audio UI Chime Synthesizer ]
+   • Raksha Bandhan Special Flute                  • Sacred Aarti & Tilak Chimes
+     (Kiran Vinkar Instrumental)                   • Celebration Confetti Harmonics
+   • Seamless Looping, Volume & Playback           • Tactile Interactive Sparkles
    • 4m 48s Pure Devotional Melody                 • 100% Royalty-Free & DMCA-Safe
 ```
 
-### 🎶 Complete Tracklist:
-1. 🪈 **Raksha Bandhan Special Flute (Default Song)** — Kiran Vinkar (Devotional Flute Melody)
-2. 🌸 **Phoolon Ka Taaron Ka** — Sibling Anthem (Bansuri Flute &amp; Santoor)
-3. 🪔 **Bhaiya Mere Rakhi Ke Bandhan** — Sister's Sacred Blessing (Harmonium &amp; Sitar)
-4. 🧵 **Behna Ne Bhai Ki Kalai Se** — Classic Rakhi Folk (Sarangi Lead)
-5. 💛 **Yeh Rakhi Bandhan Hai Aisa** — Traditional Anthem (Shehnai Lead)
-6. 🎊 **Mere Bhai Ki Dulhan Raga** — Joyful Celebration (Tabla &amp; Bansuri)
-7. 🥁 **Bollywood Dholak &amp; Tabla Beats** — 16-step Keherwa Groove @ 108 BPM
-8. 🎺 **Shehnai Mangal Dhun** — Auspicious Temple Ceremony Melody
-9. 🕉️ **Temple Tanpura &amp; Morning Raag** — Sa-Pa LFO Drone &amp; Resonant Bell Chimes
+### 🎶 Official Song:
+- 🪈 **Raksha Bandhan Special Flute** — Kiran Vinkar (Devotional Flute Instrumental • 4m 48s)
+- **Features**: Single-tap play/pause, continuous atmospheric loop, Apple Dynamic Island capsule player, and full volume controls.
 
 ---
 
