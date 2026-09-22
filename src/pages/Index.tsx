@@ -1105,7 +1105,7 @@ const Index = () => {
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
               {[
-                { icon: "🎵", label: "4 Bollywood Tracks", desc: "100% royalty-free synthesized" },
+                { icon: "🎵", label: "8 Bollywood Tracks", desc: "100% royalty-free synthesized" },
                 { icon: "📅", label: "2024–2099 Dates",   desc: "Astronomical Panchang engine" },
                 { icon: "🌐", label: "5 Languages",        desc: "Hindi, English, Marathi, Gujarati, Tamil" },
                 { icon: "🎨", label: "6 Luxury Themes",    desc: "Royal, Silk, Gold & more" },

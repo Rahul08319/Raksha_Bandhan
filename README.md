@@ -77,13 +77,17 @@ Whether your siblings are across the room or across the ocean, send personalized
       <p><strong>Never goes out of date!</strong> Combines verified Vedic Panchang records (2024–2050) with an <em>Astronomical Syzygy (Full Moon)</em> lunar engine for all future years into infinity. The minute festival day ends, the app automatically advances to the upcoming year, recalculates the date, and resets the countdown.</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🎶 Festive Bollywood Jukebox &amp; Beats</h3>
-      <p><strong>100% Copyright-Free &amp; Royalty-Free!</strong> Real-time synthesized acoustic musical tributes and festive Indian percussion loops:</p>
+      <h3>🎶 Festive Bollywood Jukebox (8 Copyright-Free Tracks)</h3>
+      <p><strong>100% Copyright-Free &amp; Royalty-Free!</strong> Real-time Web Audio synthesized acoustic tributes, traditional Indian instruments (Bansuri flute, Shehnai, Sarangi, Harmonium, Sitar), and celebratory percussion loops:</p>
       <ul>
-        <li>🌸 <strong>Phoolon Ka Taaron Ka</strong> (Acoustic Sitar Tribute • Sibling Anthem)</li>
-        <li>🥁 <strong>Festive Bollywood Dholak &amp; Tabla</strong> (Celebratory 108 BPM Keherwa Rhythm)</li>
-        <li>🪔 <strong>Bhaiya Mere Rakhi Ke</strong> (Sacred Sister's Blessing Melody)</li>
-        <li>🕉️ <strong>Temple Sitar &amp; Morning Tanpura</strong> (Meditative Vedic Ambiance)</li>
+        <li>🌸 <strong>Phoolon Ka Taaron Ka</strong> (Sibling Anthem • Bansuri Flute &amp; Santoor)</li>
+        <li>🪔 <strong>Bhaiya Mere Rakhi Ke</strong> (Sister's Sacred Blessing • Harmonium &amp; Sitar)</li>
+        <li>🧵 <strong>Behna Ne Bhai Ki Kalai Se</strong> (Classic Rakhi Folk Melody • Sarangi Lead)</li>
+        <li>💛 <strong>Yeh Rakhi Bandhan Hai</strong> (Festive Anthem • Shehnai Tribute)</li>
+        <li>🎊 <strong>Mere Bhai Ki Dulhan</strong> (Joyful Celebration Raga • Tabla &amp; Bansuri)</li>
+        <li>🥁 <strong>Bollywood Dholak &amp; Tabla Beats</strong> (16-step Keherwa Rhythm @ 108 BPM)</li>
+        <li>🎺 <strong>Shehnai Mangal Dhun</strong> (Auspicious Wedding Ceremony Melody)</li>
+        <li>🕉️ <strong>Temple Tanpura &amp; Morning Raag</strong> (Sa-Pa LFO Drone &amp; Bell Chimes)</li>
       </ul>
     </td>
   </tr>
