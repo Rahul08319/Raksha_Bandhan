@@ -50,11 +50,21 @@ Whether your siblings are across the room or across the ocean, send personalized
       <p>An interactive digital ritual experience! Step-by-step <strong>Sacred Aarti</strong> (circle the glowing diya), <strong>Shubh Tilak</strong> application, <strong>Rakhi Tying</strong> with flower petal showers, and <strong>Festive Mithai</strong> offering (Kaju Katli, Motichoor Ladoo, Gulab Jamun).</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🎨 6 Luxury Themes &amp; 4 Embossed Borders</h3>
-      <p>Themes: <em>Classic Festive</em>, <em>Royal Gold</em>, <em>Poetic Sunset</em>, <em>Playful Joy</em>, <em>Peacock Emerald</em>, and <em>Imperial Silk</em>.<br/>Frame Borders: <em>Royal Gold Foil</em>, <em>Marigold Blossom</em>, <em>Peacock Emerald</em>, and <em>Imperial Crimson</em>.</p>
+      <h3>🎨 10 Luxury &amp; Vedic Themes</h3>
+      <p>Themes: <em>Classic Festive</em>, <em>Royal Gold</em>, <em>Poetic Sunset</em>, <em>Playful Joy</em>, <em>Peacock Emerald</em>, <em>Imperial Silk</em>, <em>Vedic Shloka</em>, <em>Krishna-Draupadi</em>, <em>Rani Karnavati</em>, and <em>Tagore Harmony</em>.<br/>Frame Borders: <em>Royal Gold Foil</em>, <em>Marigold Blossom</em>, <em>Peacock Emerald</em>, and <em>Imperial Crimson</em>.</p>
     </td>
   </tr>
   <tr>
+    <td width="50%" valign="top">
+      <h3>📜 Vedic Heritage &amp; Wikipedia Historical Chronicles</h3>
+      <p>Interactive cultural guide citing historical, Vedic and mythological archives:</p>
+      <ul>
+        <li><strong>Vedic Shloka:</strong> <em>येन बद्धो बलिराजा दानवेन्द्रो महाबल:...</em> with 1-click card insertion and meaning.</li>
+        <li><strong>Mythological Lore:</strong> King Bali &amp; Goddess Lakshmi, Lord Krishna &amp; Draupadi's Cheer Haran, Indra &amp; Sachi, Yama &amp; Yamuna.</li>
+        <li><strong>Historical Records:</strong> Rani Karnavati's Rakhi to Humayun (1535), Alexander &amp; King Porus, Rabindranath Tagore's 1905 Bengal Partition Rakhis of communal harmony.</li>
+        <li><strong>Pan-Indian Customs:</strong> Nariyal Purnima (West Coast), Kajari Purnima (Central India), Avani Avittam (South India), Saluno (North India), and Jain traditions.</li>
+      </ul>
+    </td>
     <td width="50%" valign="top">
       <h3>⚜️ Sibling Honorary Titles &amp; Badges</h3>
       <p>Decorate cards with custom royal ribbons: <em>Partner in Crime 🕵️</em>, <em>The Guardian &amp; Shield 🛡️</em>, <em>Secret Keeper 🤫</em>, <em>Forever Best Friend 💖</em>, <em>Drama Royalty 👑</em>, or <em>Midnight Snacker 🍕</em>.</p>

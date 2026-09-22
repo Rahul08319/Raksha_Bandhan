@@ -30,6 +30,8 @@ import {
   Sun,
   Volume2,
   VolumeX,
+  Scroll,
+  BookOpen,
 } from "lucide-react";
 import { toPng } from "html-to-image";
 import confetti from "canvas-confetti";
@@ -56,6 +58,7 @@ import {
 } from "@/components/FestiveDecorations";
 import { RakhiCeremonyModal } from "@/components/RakhiCeremonyModal";
 import { FestiveJukebox } from "@/components/FestiveJukebox";
+import { FestivalChronicles } from "@/components/FestivalChronicles";
 
 /* ── Intersection-observer reveal hook ─────────────────────────────── */
 function useReveal(options?: IntersectionObserverInit) {
@@ -907,15 +910,58 @@ const Index = () => {
                       className="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5 press-effect transition-all"
                     >
                       <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-                      {useCustomMessage ? "Use poetic verse template" : "+ Write your own message"}
+                      {useCustomMessage ? "Use poetic verse template" : "+ Write your own message / वैदिक संदेश"}
                     </button>
+
+                    {/* Quick Authentic & Vedic Message Presets */}
+                    <div className="pt-1">
+                      <div className="text-[10px] font-black uppercase tracking-wider text-muted-foreground mb-1.5 flex items-center gap-1">
+                        <Scroll className="h-3 w-3 text-amber-500" />
+                        <span>पौराणिक व ऐतिहासिक सन्देश (1-Tap):</span>
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          {
+                            label: "📜 वैदिक श्लोक",
+                            text: "येन बद्धो बलिराजा दानवेन्द्रो महाबल:। तेन त्वामपि बध्नामि रक्षे मा चल मा चल ॥ जिस रक्षासूत्र से राजा बलि बंधे थे, वही आपको दीर्घायु और सुख प्रदान करे।",
+                          },
+                          {
+                            label: "🪷 श्रीकृष्ण-द्रौपदी",
+                            text: "जैसे भगवान श्रीकृष्ण ने द्रौपदी के रेशमी धागे का मान रखकर चीरहरण में सदैव रक्षा की, वैसे ही हमारा यह पावन रिश्ता हर जन्म में अडिग रहेगा।",
+                          },
+                          {
+                            label: "🏰 रानी कर्णावती",
+                            text: "रानी कर्णावती और हुमायूँ के ऐतिहासिक रक्षासूत्र की तरह, यह राखी सीमाओं और समय से परे हमारे अटूट रिश्ते का प्रतीक है।",
+                          },
+                          {
+                            label: "🕊️ टैगोर समरसता",
+                            text: "गुरुदेव रवीन्द्रनाथ ठाकुर के शब्दों में—'सबका कल्याण हो, प्रत्येक भाई-बहन का हृदय अविच्छिन्न, अविभक्त और एक हो।' शुभ रक्षाबन्धन!",
+                          },
+                        ].map((preset) => (
+                          <button
+                            key={preset.label}
+                            type="button"
+                            onClick={() => {
+                              festiveAudio.playSparkle();
+                              setCustomMessage(preset.text);
+                              setUseCustomMessage(true);
+                              toast.success(`${preset.label} संदेश कार्ड में जोड़ा गया! ✨`);
+                            }}
+                            className="px-2.5 py-1 rounded-full text-[11px] font-bold glass press-effect hover:border-amber-400 text-muted-foreground hover:text-foreground transition-all"
+                          >
+                            {preset.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     {useCustomMessage && (
                       <textarea
                         value={customMessage}
                         onChange={(e) => setCustomMessage(e.target.value)}
                         placeholder="Write your heartfelt words here…"
                         rows={3}
-                        className="w-full rounded-2xl border border-amber-400/35 bg-background/80 p-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none"
+                        className="w-full rounded-2xl border border-amber-400/35 bg-background/80 p-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 resize-none mt-2"
                       />
                     )}
                   </div>
@@ -1099,6 +1145,16 @@ const Index = () => {
           </div>
         </section>
 
+        {/* ━━━━━━━━━━━━━━━━━━━━ VEDIC HERITAGE & WIKIPEDIA CHRONICLES ━━━━━━━━━━━━━━━━━━━━ */}
+        <RevealSection className="mt-16 sm:mt-24">
+          <FestivalChronicles
+            onApplyMessage={(msg) => {
+              setCustomMessage(msg);
+              setUseCustomMessage(true);
+            }}
+          />
+        </RevealSection>
+
         {/* ━━━━━━━━━━━━━━━━━━━━ FEATURES STRIP ━━━━━━━━━━━━━━━━━━━━ */}
         <RevealSection className="mt-16 sm:mt-24" delay={80}>
           <div className="glass-heavy glass-shine-top rounded-3xl p-6 sm:p-8 overflow-hidden">
@@ -1108,7 +1164,7 @@ const Index = () => {
                 { icon: "🎵", label: "8 Bollywood Tracks", desc: "100% royalty-free synthesized" },
                 { icon: "📅", label: "2024–2099 Dates",   desc: "Astronomical Panchang engine" },
                 { icon: "🌐", label: "5 Languages",        desc: "Hindi, English, Marathi, Gujarati, Tamil" },
-                { icon: "🎨", label: "6 Luxury Themes",    desc: "Royal, Silk, Gold & more" },
+                { icon: "🎨", label: "10 Luxury Themes",   desc: "Vedic, Royal, Silk, Gold & more" },
               ].map((f) => (
                 <div key={f.label} className="flex flex-col items-center gap-2 group">
                   <div className="h-12 w-12 flex items-center justify-center rounded-2xl bg-grad-gold shadow-glow-sm text-2xl transition-transform duration-300 group-hover:scale-110">
