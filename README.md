@@ -21,8 +21,8 @@
 <p align="center">
   <a href="#-key-features">Key Features</a> •
   <a href="#-6-authentic-rakhi-motifs">Rakhi Motifs</a> •
-  <a href="#-bollywood--flute-soundscape">Audio Engine</a> •
-  <a href="#-apple-liquid-glass-design">Apple Design</a> •
+  <a href="#-dedicated-festival-flute-soundscape">Audio Engine</a> •
+  <a href="#-apple-liquid-glass--fluid-motion-design-system">Apple Design</a> •
   <a href="#-virtual-rakhi-ceremony">Virtual Ceremony</a> •
   <a href="#-historical-chronicles">Cultural Lore</a> •
   <a href="#-quick-start">Quick Start</a> •
@@ -136,13 +136,14 @@ The platform features a dedicated high-fidelity soundscape:
 
 ---
 
-## 🍎 Apple Liquid Glass Design System
+## 🍎 Apple Liquid Glass & Fluid Motion Design System
 
 Bandhan is built adhering to the core tenets of Apple interface design:
 
-- **Liquid Glass Materials**: Real-time multi-layered translucent surfaces (`backdrop-blur-md` to `backdrop-blur-2xl`) with specular reflections.
-- **Continuous-Corner Geometry**: Smooth squircle cards and capsules (`rounded-3xl`, `rounded-full`).
-- **Spring Physics Motion**: Tactile interactive buttons (`press-effect`, `animate-spring-in`, `hover:scale-[1.015]`).
+- **3D Pointer-Reactive Tilt & Dynamic Spotlight**: Interactive perspective tilt (`perspective: 1200px`, `rotateX`/`rotateY` with smooth spring damping) and a dynamic radial specular spotlight that tracks the cursor across the glass surface.
+- **Liquid Glass Materials**: Real-time multi-layered translucent surfaces (`backdrop-blur-md` to `backdrop-blur-2xl`) with specular reflections and hairline highlights.
+- **Continuous-Corner Geometry**: Smooth G2 squircle cards and capsules (`rounded-3xl`, `rounded-full`).
+- **Spring Physics Motion**: Tactile interactive buttons (`press-effect`, `animate-spring-in`, `hover:-translate-y-1.5`, spring release).
 - **Accessible Typography Scale**: Clean optical tracking with *Cinzel Decorative*, *Outfit*, and native Devanagari/Tamil fonts.
 - **Bento Grid Architecture**: High-density, scannable layout highlighting Panchang, traditions, stories, and the card studio.
 

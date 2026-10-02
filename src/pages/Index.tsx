@@ -234,23 +234,23 @@ const BentoTraditionCard = ({
   <RevealSection delay={delay}>
     <div
       className={`group relative overflow-hidden rounded-3xl glass-shine-top transition-all duration-300 press-effect
-        hover:scale-[1.025] hover:shadow-glow cursor-default select-none
-        ${hero ? "row-span-2 min-h-[240px]" : "min-h-[140px]"}`}
+        hover:-translate-y-1.5 hover:shadow-glow-sm cursor-default select-none
+        ${hero ? "row-span-2 min-h-[260px]" : "min-h-[150px]"}`}
     >
-      <div className="glass rounded-3xl p-6 h-full flex flex-col">
-        {/* Specular */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+      <div className="glass-heavy border border-amber-500/20 rounded-3xl p-6 h-full flex flex-col transition-colors group-hover:border-amber-400/50">
+        {/* Apple specular hairline */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 
         {/* Icon */}
         <div
-          className={`flex items-center justify-center rounded-2xl bg-grad-gold shadow-glow-sm mb-4 transition-transform duration-300 group-hover:scale-110
+          className={`flex items-center justify-center rounded-2xl bg-grad-gold shadow-glow-sm mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3
             ${hero ? "h-16 w-16 text-3xl" : "h-12 w-12 text-2xl"}`}
         >
           {icon}
         </div>
 
         <h4
-          className={`font-cinzel font-bold text-foreground leading-tight
+          className={`font-cinzel font-bold text-foreground leading-tight transition-colors group-hover:text-amber-600 dark:group-hover:text-amber-400
             ${hero ? "text-xl sm:text-2xl" : "text-base"}`}
         >
           {title}
@@ -261,7 +261,7 @@ const BentoTraditionCard = ({
 
         {/* Bottom subtle gold line */}
         <div className="mt-auto pt-4">
-          <div className="h-0.5 w-10 rounded-full bg-grad-gold opacity-50" />
+          <div className="h-0.5 w-12 rounded-full bg-grad-gold opacity-60 transition-all duration-300 group-hover:w-20" />
         </div>
       </div>
     </div>
@@ -281,26 +281,27 @@ const PanchagCard = ({
   highlight?: boolean;
 }) => (
   <div
-    className={`relative overflow-hidden rounded-2xl press-effect group transition-all duration-200 hover:scale-[1.02]
-      ${highlight ? "bg-amber-500/15 border border-amber-400/40" : "glass"}`}
+    className={`relative overflow-hidden rounded-3xl press-effect group transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm
+      ${highlight ? "bg-amber-500/20 border-2 border-amber-400/60 shadow-glow-sm" : "glass-heavy border border-amber-500/20 hover:border-amber-400/40"}`}
   >
-    <div className="p-4 sm:p-5">
+    {/* Specular hairline */}
+    <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+    <div className="p-5 sm:p-6">
       <div
-        className={`text-[10px] sm:text-xs font-black uppercase tracking-widest mb-1
+        className={`text-[10px] sm:text-xs font-black uppercase tracking-widest mb-1.5 flex items-center justify-between
           ${highlight ? "text-amber-700 dark:text-amber-300" : "text-primary"}`}
       >
-        {label}
+        <span>{label}</span>
+        {highlight && <span className="text-xs animate-pulse">✨ Prime Shubh Kaal</span>}
       </div>
-      <div className="font-cinzel text-base sm:text-lg font-black text-foreground">
+      <div className="font-cinzel text-base sm:text-xl font-black text-foreground">
         {time}
       </div>
-      <div className="text-[10px] sm:text-[11px] text-muted-foreground mt-1 leading-snug">
+      <div className="text-[11px] sm:text-xs text-muted-foreground mt-1.5 leading-snug">
         {note}
       </div>
     </div>
-    {highlight && (
-      <div className="absolute right-3 top-3 text-lg">✨</div>
-    )}
   </div>
 );
 
@@ -1274,103 +1275,145 @@ const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
   ({ name, template, lang, T, langFontClass, year, customMessage, selectedStickers, selectedTitle, selectedBorder, selectedRakhiDesign, onTriggerFestive }, ref) => {
     const titleObj  = SIBLING_TITLES.find((t) => t.id === selectedTitle);
     const borderObj = BORDER_STYLES.find((b) => b.id === selectedBorder);
+    const [tilt, setTilt] = useState({ x: 0, y: 0 });
+    const [spotlight, setSpotlight] = useState({ x: 0, y: 0, active: false });
+
+    const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      // Apple-grade subtle 6 degree max tilt
+      const rotateY = ((x - centerX) / centerX) * 6;
+      const rotateX = -((y - centerY) / centerY) * 6;
+      setTilt({ x: rotateX, y: rotateY });
+      setSpotlight({ x, y, active: true });
+    };
+
+    const handlePointerLeave = () => {
+      setTilt({ x: 0, y: 0 });
+      setSpotlight((prev) => ({ ...prev, active: false }));
+    };
 
     return (
-      <div
-        ref={ref}
-        onClick={onTriggerFestive}
-        title="Click to celebrate with sparkles!"
-        className={`group relative overflow-hidden rounded-3xl cursor-pointer transition-all duration-300 hover:scale-[1.015]
-          press-effect ${template.gradient} ${borderObj?.borderClass ?? ""} ${langFontClass}`}
-        style={{ boxShadow: "var(--shadow-lg), var(--shadow-glow-sm)" }}
-      >
-        {/* Gradient border shell (3px) */}
-        <div className="absolute inset-0 rounded-3xl" style={{ padding: "3px" }}>
-          <div className="h-full w-full rounded-[21px]" />
-        </div>
-
-        {/* Card body — Liquid Glass */}
-        <div className="relative rounded-3xl glass-heavy px-6 py-10 text-center sm:px-10 sm:py-14">
-          {/* Specular top */}
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
-
-          {/* Corner filigrees */}
-          <CornerFiligree position="top-left" />
-          <CornerFiligree position="top-right" />
-          <CornerFiligree position="bottom-left" />
-          <CornerFiligree position="bottom-right" />
-
-          {/* Top ribbon */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center">
-            <div className="h-1.5 w-40 rounded-b-full bg-grad-gold shadow-glow-sm" />
-          </div>
-
-          {/* Centerpiece rakhi motif */}
-          <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-amber-500/15 animate-pulse-glow sm:h-32 sm:w-32">
-            <RakhiMotifRenderer
-              designId={selectedRakhiDesign || "kundan"}
-              className="w-24 h-24 sm:w-28 sm:h-28"
+      <div style={{ perspective: "1200px" }} className="w-full">
+        <div
+          ref={ref}
+          onClick={onTriggerFestive}
+          onPointerMove={handlePointerMove}
+          onPointerLeave={handlePointerLeave}
+          title="Click to celebrate with sparkles!"
+          className={`group relative overflow-hidden rounded-3xl cursor-pointer select-none
+            ${template.gradient} ${borderObj?.borderClass ?? ""} ${langFontClass}`}
+          style={{
+            transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(0)`,
+            transition: spotlight.active ? "transform 0.08s ease-out" : "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
+            transformStyle: "preserve-3d",
+            boxShadow: spotlight.active
+              ? "0 25px 60px -12px rgba(234,88,12,0.35), 0 0 45px rgba(245,158,11,0.5)"
+              : "var(--shadow-lg), var(--shadow-glow-sm)",
+          }}
+        >
+          {/* Apple dynamic specular spotlight glow following cursor */}
+          {spotlight.active && (
+            <div
+              className="pointer-events-none absolute inset-0 z-30 rounded-3xl transition-opacity duration-300"
+              style={{
+                background: `radial-gradient(450px circle at ${spotlight.x}px ${spotlight.y}px, rgba(255, 255, 255, 0.28), transparent 75%)`,
+              }}
+              aria-hidden="true"
             />
-          </div>
-
-          {/* Honorary title badge */}
-          {titleObj && (
-            <div className="mx-auto mb-4 inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-amber-400/40 bg-amber-500/15 text-[11px] font-black tracking-widest text-amber-700 dark:text-amber-300 shadow-sm animate-badge-pop">
-              <Award className="h-3 w-3 text-amber-500" aria-hidden="true" />
-              <span>⚜️ {titleObj.tag} ⚜️</span>
-            </div>
           )}
 
-          {/* Greeting */}
-          <p className="font-script text-2xl sm:text-4xl text-primary">{T.dearest}</p>
-
-          {/* Recipient name */}
-          <h2
-            className="mt-1 sm:mt-2 font-cinzel font-black tracking-tight break-words"
-            style={{ fontSize: "clamp(1.8rem, 6vw, 3.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
-          >
-            <span className={template.accent}>{name}</span>
-          </h2>
-
-          <p className="font-script text-xl sm:text-3xl text-muted-foreground mt-1">{T.wishes}</p>
-
-          {/* Festival title */}
-          <h3
-            className="mt-1 font-cinzel font-black text-grad-gold"
-            style={{ fontSize: "clamp(1.3rem, 4vw, 2.2rem)", letterSpacing: "-0.015em" }}
-          >
-            {T.happy.replace("{year}", String(year))}
-          </h3>
-
-          {/* Message box */}
-          <div className="mx-auto mt-6 max-w-lg rounded-2xl glass-subtle p-4 sm:p-5">
-            <p className="text-sm sm:text-base leading-relaxed text-foreground/90 italic">
-              "{customMessage}"
-            </p>
+          {/* Gradient border shell (3px) */}
+          <div className="absolute inset-0 rounded-3xl" style={{ padding: "3px" }}>
+            <div className="h-full w-full rounded-[21px]" />
           </div>
 
-          {/* Sticker tray */}
-          {selectedStickers.length > 0 && (
-            <div className="mt-5 flex flex-wrap justify-center items-center gap-2">
-              {selectedStickers.map((stkId) => {
-                const found = CARD_STICKERS.find((s) => s.id === stkId);
-                return found ? (
-                  <span
-                    key={stkId}
-                    className="inline-flex items-center justify-center text-2xl sm:text-3xl px-3 py-1.5 bg-amber-500/12 rounded-full border border-amber-400/20 shadow-sm transition-transform hover:scale-110"
-                    aria-hidden="true"
-                  >
-                    {found.emoji}
-                  </span>
-                ) : null;
-              })}
-            </div>
-          )}
+          {/* Card body — Liquid Glass */}
+          <div className="relative rounded-3xl glass-heavy px-6 py-10 text-center sm:px-10 sm:py-14">
+            {/* Specular top */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
 
-          {/* Royal seal */}
-          <div className="mt-8 pt-4 border-t border-amber-400/20 flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground">
-            <Award className="h-3.5 w-3.5 text-amber-500" aria-hidden="true" />
-            <span>Sacred Rakhi • Tied with Eternal Love</span>
+            {/* Corner filigrees */}
+            <CornerFiligree position="top-left" />
+            <CornerFiligree position="top-right" />
+            <CornerFiligree position="bottom-left" />
+            <CornerFiligree position="bottom-right" />
+
+            {/* Top ribbon */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-center">
+              <div className="h-1.5 w-40 rounded-b-full bg-grad-gold shadow-glow-sm" />
+            </div>
+
+            {/* Centerpiece rakhi motif */}
+            <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-amber-500/15 animate-pulse-glow sm:h-32 sm:w-32 transition-transform duration-300 group-hover:scale-105">
+              <RakhiMotifRenderer
+                designId={selectedRakhiDesign || "kundan"}
+                className="w-24 h-24 sm:w-28 sm:h-28"
+              />
+            </div>
+
+            {/* Honorary title badge */}
+            {titleObj && (
+              <div className="mx-auto mb-4 inline-flex items-center gap-1.5 px-4 py-1 rounded-full border border-amber-400/40 bg-amber-500/15 text-[11px] font-black tracking-widest text-amber-700 dark:text-amber-300 shadow-sm animate-badge-pop">
+                <Award className="h-3 w-3 text-amber-500" aria-hidden="true" />
+                <span>⚜️ {titleObj.tag} ⚜️</span>
+              </div>
+            )}
+
+            {/* Greeting */}
+            <p className="font-script text-2xl sm:text-4xl text-primary">{T.dearest}</p>
+
+            {/* Recipient name */}
+            <h2
+              className="mt-1 sm:mt-2 font-cinzel font-black tracking-tight break-words"
+              style={{ fontSize: "clamp(1.8rem, 6vw, 3.5rem)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+            >
+              <span className={template.accent}>{name}</span>
+            </h2>
+
+            <p className="font-script text-xl sm:text-3xl text-muted-foreground mt-1">{T.wishes}</p>
+
+            {/* Festival title */}
+            <h3
+              className="mt-1 font-cinzel font-black text-grad-gold"
+              style={{ fontSize: "clamp(1.3rem, 4vw, 2.2rem)", letterSpacing: "-0.015em" }}
+            >
+              {T.happy.replace("{year}", String(year))}
+            </h3>
+
+            {/* Message box */}
+            <div className="mx-auto mt-6 max-w-lg rounded-2xl glass-subtle p-4 sm:p-5">
+              <p className="text-sm sm:text-base leading-relaxed text-foreground/90 italic">
+                "{customMessage}"
+              </p>
+            </div>
+
+            {/* Sticker tray */}
+            {selectedStickers.length > 0 && (
+              <div className="mt-5 flex flex-wrap justify-center items-center gap-2">
+                {selectedStickers.map((stkId) => {
+                  const found = CARD_STICKERS.find((s) => s.id === stkId);
+                  return found ? (
+                    <span
+                      key={stkId}
+                      className="inline-flex items-center justify-center text-2xl sm:text-3xl px-3 py-1.5 bg-amber-500/12 rounded-full border border-amber-400/20 shadow-sm transition-transform hover:scale-110 active:scale-95"
+                      aria-hidden="true"
+                    >
+                      {found.emoji}
+                    </span>
+                  ) : null;
+                })}
+              </div>
+            )}
+
+            {/* Royal seal */}
+            <div className="mt-8 pt-4 border-t border-amber-400/20 flex items-center justify-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-muted-foreground">
+              <Award className="h-3.5 w-3.5 text-amber-500" aria-hidden="true" />
+              <span>Sacred Rakhi • Tied with Eternal Love</span>
+            </div>
           </div>
         </div>
       </div>
