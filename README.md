@@ -48,12 +48,22 @@ Whether your siblings are celebrating together or separated by continents, send 
 <table width="100%">
   <tr>
     <td width="50%" valign="top">
-      <h3>🪈 Dedicated Flute Instrumental Soundscape</h3>
-      <p>Features <strong>Raksha Bandhan Special Flute Instrumental</strong> (by Kiran Vinkar, 4m 48s) as the dedicated festival soundscape with continuous atmospheric looping, interactive equalizer waves, and an Apple Dynamic Island capsule player.</p>
+      <h3>🪈 Dedicated Continuous Flute Soundscape &amp; Pause Option</h3>
+      <p>Features <strong>Raksha Bandhan Special Flute Instrumental</strong> (by Kiran Vinkar, 4m 48s) as the dedicated festival soundscape. Engineered for continuous atmospheric looping with intelligent autoplay gesture fallback, live equalizer waves, an Apple Dynamic Island capsule, and a seamless 1-click <strong>Pause / Resume toggle</strong>.</p>
     </td>
+    <td width="50%" valign="top">
+      <h3>🎉 Grand Celebration Engine &amp; Divine Aarti</h3>
+      <p>Interactive festive celebrations: multi-cannon saffron-gold confetti bursts, sacred Aarti Diya with Vedic blessing chimes (<em>ॐ येन बद्धो बली राजा...</em>), floating golden sparkle dust (<code>@keyframes sparkle-twinkle</code>), and falling blossom petals.</p>
+    </td>
+  </tr>
+  <tr>
     <td width="50%" valign="top">
       <h3>🧵 6 Authentic Rakhi Motifs with Physics Sway</h3>
       <p>Handcrafted vector motifs: <strong>Kundan Gold</strong>, <strong>Peacock Feather</strong>, <strong>Rudraksha Divine</strong>, <strong>Swastik &amp; Om</strong>, <strong>Lumba Zari Bhabhi Rakhi</strong>, and <strong>Silver Filigree Ruby</strong>—with delicate swaying silk threads and interactive selection.</p>
+    </td>
+    <td width="50%" valign="top">
+      <h3>🍎 Apple Liquid Glass Aesthetics &amp; 3D Tilt</h3>
+      <p>Engineered according to Apple Human Interface Guidelines: multi-layered translucent glass (<code>backdrop-filter: blur(24px) saturate(180%)</code>), dynamic 3D perspective tilt (<code>perspective: 1200px</code>), specular edge highlights, continuous-corner squircle geometry (<code>rounded-3xl</code>), and spring physics.</p>
     </td>
   </tr>
   <tr>
@@ -66,21 +76,11 @@ Whether your siblings are celebrating together or separated by continents, send 
       <br/>4. <strong>Feed Festive Mithai</strong> (Kaju Katli, Motichoor, Gulab Jamun).</p>
     </td>
     <td width="50%" valign="top">
-      <h3>🍎 Apple Liquid Glass Aesthetics</h3>
-      <p>Engineered according to Apple Human Interface Guidelines: multi-layered translucent glass, specular edge highlights, continuous-corner squircle geometry, spring physics, and responsive bento grid layouts.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
       <h3>📜 Historical &amp; Vedic Chronicles</h3>
       <p>Curated from authentic archives &amp; Wikipedia:
       <br/>• <strong>Vedic Shloka</strong>: <em>येन बद्धो बलिराजा...</em> (1-click card insertion)
       <br/>• <strong>Historical Legends</strong>: Rani Karnavati &amp; Humayun, Alexander &amp; King Porus, Tagore’s 1905 Bengal Unity Rakhis
       <br/>• <strong>Mythological Lore</strong>: Krishna &amp; Draupadi, King Bali &amp; Lakshmi, Yama &amp; Yamuna.</p>
-    </td>
-    <td width="50%" valign="top">
-      <h3>🎨 10 Luxury Themes &amp; Frame Borders</h3>
-      <p>Curated color palettes and foil accents: <em>Classic Festive</em>, <em>Royal Gold</em>, <em>Poetic Sunset</em>, <em>Playful Joy</em>, <em>Peacock Emerald</em>, <em>Imperial Silk</em>, <em>Vedic Shloka</em>, <em>Krishna-Draupadi</em>, <em>Rani Karnavati</em>, and <em>Tagore Harmony</em>.</p>
     </td>
   </tr>
   <tr>
@@ -112,9 +112,9 @@ Choose from 6 traditionally crafted Rakhi motifs, each rendered with vector prec
 
 ---
 
-## 🪈 Dedicated Festival Flute Soundscape
+## 🪈 Dedicated Festival Flute Soundscape &amp; Playback Architecture
 
-The platform features a dedicated high-fidelity soundscape:
+The platform features a dedicated high-fidelity soundscape with continuous looping and full user playback control:
 
 ```
                   ┌──────────────────────────────────────────────┐
@@ -125,14 +125,17 @@ The platform features a dedicated high-fidelity soundscape:
                  ▼                                               ▼
    [ Master Flute Audio Engine ]                   [ Web Audio UI Chime Synthesizer ]
    • Raksha Bandhan Special Flute                  • Sacred Aarti & Tilak Chimes
-     (Kiran Vinkar Instrumental)                   • Celebration Confetti Harmonics
-   • Seamless Looping, Volume & Playback           • Tactile Interactive Sparkles
-   • 4m 48s Pure Devotional Melody                 • 100% Royalty-Free & DMCA-Safe
+     (Kiran Vinkar Instrumental, 4m 48s)           • Celebration Confetti Harmonics
+   • Continuous Seamless Looping (`loop = true`)   • Interactive Devotional Sparkles
+   • Instant 1-Click Pause & Resume Controls       • 100% Royalty-Free & DMCA-Safe
+   • Smart Autoplay Gesture Fallback Listener      • Real-Time Harmonic Frequencies
 ```
 
-### 🎶 Official Song:
-- 🪈 **Raksha Bandhan Special Flute** — Kiran Vinkar (Devotional Flute Instrumental • 4m 48s)
-- **Features**: Single-tap play/pause, continuous atmospheric loop, Apple Dynamic Island capsule player, and full volume controls.
+### 🎶 Master Track Details & Controls:
+- 🪈 **Track**: *Raksha Bandhan Special Flute Instrumental* — Kiran Vinkar (Devotional Flute • 4m 48s)
+- 🔁 **Continuous Loop**: Starts automatically in loop upon mount or first user touch, ensuring uninterrupted festive ambiance.
+- ⏸️ **Instant Pause / Play**: Readily accessible via the sticky navigation bar, the hero CTA buttons, and the floating Apple Dynamic Island bottom bar.
+- 🎚️ **Apple Dynamic Island Capsule**: Real-time equalizer visualizer, track metadata badge, volume slider, and one-tap grand celebration confetti trigger.
 
 ---
 

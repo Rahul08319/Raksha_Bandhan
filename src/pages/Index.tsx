@@ -326,6 +326,7 @@ const Index = () => {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [navScrolled, setNavScrolled] = useState(false);
   const [heroMounted, setHeroMounted] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState<boolean>(festiveAudio.isPlaying);
 
   const rakhi = useMemo(
     () => getNextRakhi(Date.now(), lang, selectedYear),
@@ -372,6 +373,66 @@ const Index = () => {
     setTimeout(() => setHeroMounted(true), 80);
   }, []);
 
+  /* ── Continuous Loop Music Auto-Play & User Interaction Fallback ── */
+  useEffect(() => {
+    // Attempt continuous loop playback on mount
+    const startAudio = () => {
+      if (!festiveAudio.isPlaying) {
+        const ok = festiveAudio.playTrack("flute_default");
+        if (ok) setIsMusicPlaying(true);
+      }
+    };
+
+    startAudio();
+
+    // Browser policy: start on the very first touch / interaction if unprompted autoplay was prevented
+    const onFirstUserGesture = () => {
+      if (!festiveAudio.isPlaying) {
+        festiveAudio.playTrack("flute_default");
+        setIsMusicPlaying(true);
+      }
+    };
+
+    window.addEventListener("pointerdown", onFirstUserGesture, { once: true });
+    window.addEventListener("keydown", onFirstUserGesture, { once: true });
+    window.addEventListener("touchstart", onFirstUserGesture, { once: true });
+    window.addEventListener("click", onFirstUserGesture, { once: true });
+
+    const syncInterval = setInterval(() => {
+      setIsMusicPlaying(festiveAudio.isPlaying);
+    }, 300);
+
+    return () => {
+      window.removeEventListener("pointerdown", onFirstUserGesture);
+      window.removeEventListener("keydown", onFirstUserGesture);
+      window.removeEventListener("touchstart", onFirstUserGesture);
+      window.removeEventListener("click", onFirstUserGesture);
+      clearInterval(syncInterval);
+    };
+  }, []);
+
+  /* ── Music Toggle Handler ── */
+  const handleToggleMusic = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (festiveAudio.isPlaying) {
+      festiveAudio.pauseMusic();
+      setIsMusicPlaying(false);
+      toast.info("Music paused ⏸️");
+    } else {
+      festiveAudio.playTrack("flute_default");
+      setIsMusicPlaying(true);
+      toast.success("🪈 Playing Raksha Bandhan Special Flute in Loop! 🎶");
+    }
+  };
+
+  /* ── Grand Celebration Trigger ── */
+  const handleGrandCelebration = () => {
+    fireFestiveConfetti();
+    toast.success("✨ शुभ रक्षाबंधन! Wishing you divine joy, protection, and eternal sibling love! 🪔💖", {
+      duration: 6000,
+    });
+  };
+
   /* ── Scroll nav glass ── */
   useEffect(() => {
     const onScroll = () => setNavScrolled(window.scrollY > 28);
@@ -407,6 +468,20 @@ const Index = () => {
         duration: 10 + Math.random() * 10,
         left:     Math.random() * 100,
         emoji:    ["🌸", "🌺", "✨", "🪷", "🌼", "🪔", "💖", "⭐", "🌟", "🌹"][i % 10],
+      })),
+    []
+  );
+
+  /* ── Sparkles dust (memoized) ── */
+  const festiveSparkles = useMemo(
+    () =>
+      Array.from({ length: 30 }).map((_, i) => ({
+        id: i,
+        top: `${(i * 31) % 95}%`,
+        left: `${(i * 47) % 97}%`,
+        delay: (i * 0.35) % 4,
+        size: 9 + ((i * 3) % 12),
+        emoji: ["✨", "✦", "🌟", "🪔", "💫", "⭐"][i % 6],
       })),
     []
   );
@@ -515,6 +590,25 @@ const Index = () => {
         {petals.map((p) => <Petal key={p.id} {...p} />)}
       </div>
 
+      {/* ── Background Festive Sparkling Dust ── */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+        {festiveSparkles.map((s) => (
+          <div
+            key={s.id}
+            className="absolute animate-sparkle-twinkle select-none"
+            style={{
+              top: s.top,
+              left: s.left,
+              animationDelay: `${s.delay}s`,
+              fontSize: `${s.size}px`,
+              opacity: 0.65,
+            }}
+          >
+            {s.emoji}
+          </div>
+        ))}
+      </div>
+
       {/* ── Ambient glow orbs ── */}
       <GlowOrb className="-top-40 -left-40 z-0" color="orange" size={520} />
       <GlowOrb className="top-1/2 -right-48 z-0" color="rose" size={480} />
@@ -551,6 +645,30 @@ const Index = () => {
         <div className="flex items-center gap-2">
           {/* Jukebox */}
           <FestiveJukebox />
+
+          {/* Quick Play/Pause Pill Button */}
+          <button
+            onClick={handleToggleMusic}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold glass press-effect transition-all ${
+              isMusicPlaying
+                ? "border-amber-400/60 bg-amber-500/20 text-amber-600 dark:text-amber-300 shadow-glow-sm"
+                : "border-amber-500/25 text-foreground hover:border-amber-400/50"
+            }`}
+            title={isMusicPlaying ? "Pause music" : "Play continuous flute in loop"}
+            aria-label={isMusicPlaying ? "Pause Music" : "Play Music"}
+          >
+            {isMusicPlaying ? (
+              <>
+                <span aria-hidden="true">⏸️</span>
+                <span className="hidden sm:inline">Pause</span>
+              </>
+            ) : (
+              <>
+                <span aria-hidden="true">▶️</span>
+                <span className="hidden sm:inline">Play</span>
+              </>
+            )}
+          </button>
 
           {/* Sound */}
           <button
@@ -609,11 +727,28 @@ const Index = () => {
             <span>{T.chip.replace("{date}", rakhi.dateLabel)}</span>
           </div>
 
-          {/* Diya */}
+          {/* Diya with sacred Aarti touch blessing */}
           <div
-            className={`flex justify-center mb-4 transition-all ${heroMounted ? "animate-spring-in stagger-2" : "opacity-0"}`}
+            onClick={() => {
+              festiveAudio.playCelebrationChord();
+              fireFestiveConfetti();
+              toast.success("ॐ येन बद्धो बली राजा दानवेन्द्रो महाबलः। तेन त्वामनुबध्नामि रक्षे मा चल मा चल॥ 🪔✨", {
+                duration: 6000,
+              });
+            }}
+            className={`flex flex-col items-center justify-center mb-4 transition-all cursor-pointer group ${
+              heroMounted ? "animate-spring-in stagger-2" : "opacity-0"
+            }`}
+            title="Touch Diya for Sacred Aarti Blessing 🪔"
           >
-            <AuspiciousDiya size={64} />
+            <div className="relative group-hover:scale-110 active:scale-95 transition-transform duration-300 p-2">
+              <AuspiciousDiya size={68} />
+              <div className="mt-1 text-[10px] font-bold tracking-wider uppercase text-amber-600 dark:text-amber-400 opacity-80 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
+                <Sparkles className="h-3 w-3 text-amber-500" />
+                <span>Touch for Aarti Blessing</span>
+                <Sparkles className="h-3 w-3 text-amber-500" />
+              </div>
+            </div>
           </div>
 
           {/* H1 — Apple large display style */}
@@ -663,30 +798,25 @@ const Index = () => {
             {/* Secondary CTAs */}
             <Button
               type="button"
-              onClick={() => {
-                const playing = festiveAudio.activeTrackId;
-                if (playing) {
-                  festiveAudio.stopMusic();
-                  toast.info("Music paused ⏸️");
-                } else {
-                  festiveAudio.playTrack("flute_default");
-                  toast.success("🪈 Playing Raksha Bandhan Special Flute (Default Song)! 🎶");
-                }
-              }}
+              onClick={handleToggleMusic}
               variant="outline"
-              className="h-13 px-5 rounded-2xl glass border-amber-400/30 text-sm font-bold text-foreground hover:border-amber-400 press-effect transition-all"
+              className={`h-13 px-5 rounded-2xl glass border-amber-400/30 text-sm font-bold text-foreground hover:border-amber-400 press-effect transition-all ${
+                isMusicPlaying
+                  ? "bg-amber-500/20 border-amber-400/70 text-amber-600 dark:text-amber-300 shadow-glow-sm"
+                  : ""
+              }`}
             >
-              <Music className="h-4 w-4 text-amber-500 mr-2" aria-hidden="true" />
-              {festiveAudio.activeTrackId ? "Pause Track ⏸️" : "Raksha Bandhan Flute 🪈"}
+              <Music className={`h-4 w-4 mr-2 ${isMusicPlaying ? "animate-spin text-amber-500" : "text-amber-500"}`} aria-hidden="true" />
+              {isMusicPlaying ? "Pause Flute (Looping) ⏸️" : "Play Flute in Loop 🪈"}
             </Button>
 
             <Button
               type="button"
-              onClick={fireFestiveConfetti}
+              onClick={handleGrandCelebration}
               variant="outline"
-              className="h-13 px-5 rounded-2xl glass border-amber-400/30 text-sm font-bold text-foreground hover:border-amber-400 press-effect transition-all"
+              className="h-13 px-5 rounded-2xl glass border-amber-400/30 text-sm font-bold text-foreground hover:border-amber-400 press-effect transition-all hover:bg-amber-500/10"
             >
-              Celebrate 🎉
+              Celebrate Sacred Bond 🎉
             </Button>
           </div>
         </header>
@@ -1249,6 +1379,79 @@ const Index = () => {
         onClose={() => setIsCeremonyOpen(false)}
         rakhiDesignId={selectedRakhiDesign}
       />
+
+      {/* ── Apple Liquid Glass Floating Celebration & Music Controller ── */}
+      <aside
+        aria-label="Festive audio player and celebration controller"
+        className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40 w-[94vw] max-w-lg select-none"
+      >
+        <div className="relative rounded-full glass-heavy border border-amber-400/40 p-2 sm:px-5 sm:py-2.5 shadow-2xl flex items-center justify-between gap-2 sm:gap-4 backdrop-blur-2xl">
+          {/* Specular reflection hairline */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+          {/* Flute Track Info */}
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <div
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-grad-gold text-amber-950 shadow-glow-sm ${
+                isMusicPlaying ? "animate-pulse-glow" : ""
+              }`}
+            >
+              <span className="text-base" aria-hidden="true">🪈</span>
+            </div>
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="font-cinzel text-xs font-extrabold text-foreground truncate">
+                  Raksha Bandhan Flute
+                </span>
+                <span className="hidden sm:inline-flex text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                  🔁 Loop
+                </span>
+              </div>
+              <p className="text-[10px] text-muted-foreground truncate">
+                Kiran Vinkar • Devotional Instrumental
+              </p>
+            </div>
+          </div>
+
+          {/* Action Controls */}
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Pause / Resume Button */}
+            <button
+              onClick={handleToggleMusic}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-extrabold shadow-sm transition-all press-effect ${
+                isMusicPlaying
+                  ? "bg-amber-500 text-white hover:bg-amber-600 shadow-glow-sm"
+                  : "bg-grad-gold text-amber-950 hover:brightness-110"
+              }`}
+              title={isMusicPlaying ? "Pause Music" : "Resume Music in Loop"}
+              aria-label={isMusicPlaying ? "Pause Music" : "Resume Music in Loop"}
+            >
+              {isMusicPlaying ? (
+                <>
+                  <span aria-hidden="true">⏸️</span>
+                  <span>Pause</span>
+                </>
+              ) : (
+                <>
+                  <span aria-hidden="true">▶️</span>
+                  <span>Play</span>
+                </>
+              )}
+            </button>
+
+            {/* Quick Confetti Celebration */}
+            <button
+              onClick={handleGrandCelebration}
+              className="flex items-center gap-1 px-2.5 sm:px-3 py-1.5 rounded-full glass border border-amber-400/40 text-xs font-bold text-foreground hover:border-amber-400 press-effect hover:bg-amber-500/15"
+              title="Unleash festive celebration confetti"
+              aria-label="Celebration Confetti"
+            >
+              <span aria-hidden="true">🎉</span>
+              <span className="hidden sm:inline">Celebrate</span>
+            </button>
+          </div>
+        </div>
+      </aside>
     </main>
   );
 };

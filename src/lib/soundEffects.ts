@@ -96,13 +96,8 @@ class FestiveSoundManager {
     } catch { /* ignore */ }
   }
 
-  // ── Public: play flute track ───────────────────────────────────────────
+  // ── Public: play flute track in loop ──────────────────────────────────
   public playTrack(trackId: string = "flute_default"): boolean {
-    if (this.currentPlayingTrack) {
-      this.stopMusic();
-      return false;
-    }
-
     const track = FESTIVE_TRACKS.find((t) => t.id === trackId) || FESTIVE_TRACKS[0];
 
     if (track && track.audioUrl) {
@@ -110,7 +105,7 @@ class FestiveSoundManager {
       try {
         if (!this.audioElement) {
           this.audioElement = new Audio(track.audioUrl);
-        } else {
+        } else if (!this.audioElement.src.includes(track.audioUrl)) {
           this.audioElement.src = track.audioUrl;
         }
         this.audioElement.loop = true;
@@ -118,7 +113,7 @@ class FestiveSoundManager {
         const playPromise = this.audioElement.play();
         if (playPromise !== undefined) {
           playPromise.catch((err) => {
-            console.warn("Audio element playback failed/blocked:", err);
+            console.warn("Audio autoplay blocked by browser policy:", err);
           });
         }
         return true;
@@ -128,6 +123,43 @@ class FestiveSoundManager {
     }
 
     return false;
+  }
+
+  // ── Public: pause music ────────────────────────────────────────────────
+  public pauseMusic() {
+    if (this.audioElement && !this.audioElement.paused) {
+      try {
+        this.audioElement.pause();
+      } catch { /* ignore */ }
+    }
+    this.currentPlayingTrack = null;
+  }
+
+  // ── Public: resume music ───────────────────────────────────────────────
+  public resumeMusic(): boolean {
+    if (this.audioElement) {
+      try {
+        this.audioElement.loop = true;
+        this.audioElement.volume = this.volume;
+        this.currentPlayingTrack = "flute_default";
+        const p = this.audioElement.play();
+        if (p) p.catch(() => {});
+        return true;
+      } catch {
+        return this.playTrack("flute_default");
+      }
+    }
+    return this.playTrack("flute_default");
+  }
+
+  // ── Public: toggle play/pause ──────────────────────────────────────────
+  public toggleMusic(): boolean {
+    if (this.isPlaying) {
+      this.pauseMusic();
+      return false;
+    } else {
+      return this.resumeMusic();
+    }
   }
 
   // ── Public: stop ──────────────────────────────────────────────────────
@@ -143,15 +175,15 @@ class FestiveSoundManager {
 
   // ── Compat ─────────────────────────────────────────────────────────────
   public toggleAmbientMusic(): boolean {
-    if (this.currentPlayingTrack) {
-      this.stopMusic();
-      return false;
-    }
-    return this.playTrack("flute_default");
+    return this.toggleMusic();
+  }
+
+  public get isPlaying(): boolean {
+    return Boolean(this.audioElement && !this.audioElement.paused);
   }
 
   public get activeTrackId(): string | null {
-    return this.currentPlayingTrack;
+    return this.isPlaying ? this.currentPlayingTrack || "flute_default" : null;
   }
 
   public setVolume(vol: number) {

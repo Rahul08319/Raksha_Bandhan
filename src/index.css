@@ -391,22 +391,41 @@
   66%      { transform: rotate(-2deg) translateY(1.5px); }
 }
 
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.7) rotate(0deg); }
+  50%      { opacity: 0.95; transform: scale(1.25) rotate(180deg); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.9)); }
+}
+
+@keyframes festive-radiance {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4)); transform: scale(1); }
+  50%      { filter: drop-shadow(0 0 24px rgba(234, 88, 12, 0.8)) drop-shadow(0 0 36px rgba(245, 158, 11, 0.5)); transform: scale(1.02); }
+}
+
+@keyframes diya-flame-divine {
+  0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 -2px 10px rgba(245, 158, 11, 0.8)); }
+  33%      { transform: scale(1.1, 0.93) rotate(2deg); filter: drop-shadow(0 -4px 18px rgba(234, 88, 12, 0.95)); }
+  66%      { transform: scale(0.94, 1.06) rotate(-2deg); filter: drop-shadow(0 -3px 14px rgba(251, 191, 36, 0.9)); }
+}
+
 /* Animation utility classes */
-.animate-float-up      { animation: float-up linear infinite; }
-.animate-pulse-glow    { animation: pulse-glow 2.8s ease-in-out infinite; }
-.animate-flame         { animation: flame-flicker 1.7s ease-in-out infinite; }
-.animate-mandala       { animation: rotate-mandala 70s linear infinite; }
-.animate-mandala-rev   { animation: rotate-mandala 48s linear infinite reverse; }
-.animate-float-gentle  { animation: float-gentle 6s ease-in-out infinite; }
-.animate-drift         { animation: drift-orbit 12s ease-in-out infinite; }
-.animate-spring-in     { animation: spring-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-slide-left    { animation: slide-in-from-left 0.5s cubic-bezier(0.34, 1.28, 0.64, 1) forwards; }
-.animate-slide-right   { animation: slide-in-from-right 0.5s cubic-bezier(0.34, 1.28, 0.64, 1) forwards; }
-.animate-scale-in      { animation: scale-in 0.4s cubic-bezier(0.34, 1.42, 0.64, 1) forwards; }
-.animate-badge-pop     { animation: badge-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.animate-orb           { animation: orb-drift 18s ease-in-out infinite; }
-.animate-glow-ring     { animation: glow-ring 2s ease-out infinite; }
-.animate-thread-sway   { animation: thread-sway 4s ease-in-out infinite; }
+.animate-float-up         { animation: float-up linear infinite; }
+.animate-pulse-glow       { animation: pulse-glow 2.8s ease-in-out infinite; }
+.animate-flame            { animation: flame-flicker 1.7s ease-in-out infinite; }
+.animate-diya-divine      { animation: diya-flame-divine 2s ease-in-out infinite; }
+.animate-mandala          { animation: rotate-mandala 70s linear infinite; }
+.animate-mandala-rev      { animation: rotate-mandala 48s linear infinite reverse; }
+.animate-float-gentle     { animation: float-gentle 6s ease-in-out infinite; }
+.animate-drift            { animation: drift-orbit 12s ease-in-out infinite; }
+.animate-spring-in        { animation: spring-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-slide-left       { animation: slide-in-from-left 0.5s cubic-bezier(0.34, 1.28, 0.64, 1) forwards; }
+.animate-slide-right      { animation: slide-in-from-right 0.5s cubic-bezier(0.34, 1.28, 0.64, 1) forwards; }
+.animate-scale-in         { animation: scale-in 0.4s cubic-bezier(0.34, 1.42, 0.64, 1) forwards; }
+.animate-badge-pop        { animation: badge-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.animate-orb              { animation: orb-drift 18s ease-in-out infinite; }
+.animate-glow-ring        { animation: glow-ring 2s ease-out infinite; }
+.animate-thread-sway      { animation: thread-sway 4s ease-in-out infinite; }
+.animate-sparkle-twinkle  { animation: sparkle-twinkle 3s ease-in-out infinite; }
+.animate-festive-radiance { animation: festive-radiance 4s ease-in-out infinite; }
 .animate-shimmer {
   background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
   background-size: 200% auto;
