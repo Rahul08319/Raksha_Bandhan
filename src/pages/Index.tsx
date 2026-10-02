@@ -61,6 +61,7 @@ import {
 import { RakhiCeremonyModal } from "@/components/RakhiCeremonyModal";
 import { FestiveJukebox } from "@/components/FestiveJukebox";
 import { FestivalChronicles } from "@/components/FestivalChronicles";
+import { RealisticRakhi } from "@/components/RealisticRakhi";
 
 /* ── Intersection-observer reveal hook ─────────────────────────────── */
 function useReveal(options?: IntersectionObserverInit) {
@@ -821,6 +822,39 @@ const Index = () => {
           </div>
         </header>
 
+        {/* ━━━━━━━━━━━━━━━━━━━━ 3D REALISTIC LIVING RAKHI SHOWCASE ━━━━━━━━━━━━━━━━━━━━ */}
+        <RevealSection className="mt-8 sm:mt-12">
+          <div className="glass-heavy glass-shine-top rounded-3xl p-6 sm:p-8 md:p-10 max-w-4xl mx-auto overflow-hidden text-center relative border border-amber-400/35 shadow-2xl">
+            {/* Top specular reflection hairline */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent" />
+
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-black uppercase tracking-widest text-primary mb-3 shadow-sm">
+              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
+              <span>Shubh Raksha Sutra • Living 3D Sacred Thread</span>
+            </div>
+
+            <h2
+              className="font-cinzel font-black text-foreground"
+              style={{ fontSize: "clamp(1.5rem, 3.8vw, 2.5rem)", letterSpacing: "-0.02em", lineHeight: 1.15 }}
+            >
+              The Living Rakhi in Motion
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground mt-2 max-w-lg mx-auto leading-relaxed">
+              Move your mouse or touch to rotate this authentic Rakhi in 3D perspective. Handcrafted with dual-intertwined resham silk Mauli cords, 22K gold filigree, lustrous spherical pearls, and radiant gemstones.
+            </p>
+
+            {/* Realistic 3D Rakhi Component with Physics Sway and Style Switcher */}
+            <RealisticRakhi
+              style="kundan"
+              variant="hero"
+              interactive={true}
+              showSelector={true}
+              className="mt-2"
+            />
+          </div>
+        </RevealSection>
+
         {/* ━━━━━━━━━━━━━━━━━━━━ COUNTDOWN ━━━━━━━━━━━━━━━━━━━━ */}
         <RevealSection className="mt-10 sm:mt-14">
           <div className="glass-heavy glass-shine-top rounded-3xl p-5 sm:p-7 max-w-2xl mx-auto overflow-hidden">
@@ -1550,11 +1584,17 @@ const WishCard = forwardRef<HTMLDivElement, WishCardProps>(
               <div className="h-1.5 w-40 rounded-b-full bg-grad-gold shadow-glow-sm" />
             </div>
 
-            {/* Centerpiece rakhi motif */}
-            <div className="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full bg-amber-500/15 animate-pulse-glow sm:h-32 sm:w-32 transition-transform duration-300 group-hover:scale-105">
-              <RakhiMotifRenderer
-                designId={selectedRakhiDesign || "kundan"}
-                className="w-24 h-24 sm:w-28 sm:h-28"
+            {/* Centerpiece realistic rakhi motif */}
+            <div className="mx-auto mb-4 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <RealisticRakhi
+                style={
+                  selectedRakhiDesign === "peacock" ? "peacock"
+                  : selectedRakhiDesign === "rudraksha" ? "rudraksha"
+                  : selectedRakhiDesign === "om" ? "om"
+                  : "kundan"
+                }
+                variant="card"
+                interactive={false}
               />
             </div>
 

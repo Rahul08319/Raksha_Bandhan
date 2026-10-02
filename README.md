@@ -112,6 +112,26 @@ Choose from 6 traditionally crafted Rakhi motifs, each rendered with vector prec
 
 ---
 
+## ✨ Realistic 3D Animated Living Rakhi
+
+Bandhan features a lifelike vector &amp; physics-animated sacred Rakhi:
+
+```
+           [ Twisted Silk Threads ]                     [ 3D Gold Filigree Medallion ]                      [ Twisted Silk Threads ]
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~====( O )====[  ⚜️ REAL KUNDAN RUBY & PEARLS ⚜️  ]====( O )====~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         • Crimson & Saffron Resham               • 24 Spherical Pearls with Specular Light              • Metallic Gold Zari Coil
+         • Golden Zari Spiral Wire                • Inset Faceted Cushion-Cut Ruby Gem                   • Dangling Latkan Tassels
+         • Natural Pendulum Wave Motion           • Dynamic Diagonal Glint & Shimmer                     • Realistic Physics Sway
+```
+
+### 💎 Craftsmanship &amp; Realism Features:
+- **Twisted Resham Kalawa/Mauli Cords**: Dual-strand crimson &amp; turmeric saffron silk threads intertwined with glittering gold zari wire, authentic Rudraksha spacer beads, and hanging latkan tassel fringe.
+- **24 Spherical 3D Pearls (Moti Halo)**: Realistic multi-stop spherical radial gradients with off-center specular light pin reflections and drop shadows, giving each pearl physical roundness.
+- **Faceted Gemstone &amp; Jewelry Depth**: Hand-cut cushion/table facets with caustic inner red glow for Royal Kundan Ruby, iridescent blue/green barbs for Krishna Mayur Pankh, organic 5-mukhi clefts for Sacred Rudraksha, and embossed 24K gold for Auspicious Om.
+- **Interactive Physics &amp; 3D Perspective**: Tracks pointer movement with a 1200px perspective camera (<code>rotateX</code>, <code>rotateY</code>, <code>translateZ</code>), dynamic light-tracking floor shadow, and interactive touch response that plucks the thread, chimes, and triggers celebration confetti.
+
+---
+
 ## 🪈 Dedicated Festival Flute Soundscape &amp; Playback Architecture
 
 The platform features a dedicated high-fidelity soundscape with continuous looping and full user playback control:

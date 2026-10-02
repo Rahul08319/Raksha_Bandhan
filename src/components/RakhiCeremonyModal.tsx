@@ -4,6 +4,7 @@ import { Sparkles, Check, RotateCcw, X, Heart, Award } from "lucide-react";
 import confetti from "canvas-confetti";
 import { festiveAudio } from "@/lib/soundEffects";
 import { RakhiMotifRenderer, AuspiciousDiya } from "@/components/FestiveDecorations";
+import { RealisticRakhi } from "@/components/RealisticRakhi";
 
 interface RakhiCeremonyProps {
   siblingName: string;
@@ -221,33 +222,46 @@ export const RakhiCeremonyModal: React.FC<RakhiCeremonyProps> = ({
               Tie the sacred golden thread of love and lifelong protection on {siblingName}&apos;s wrist.
             </p>
 
-            <div className="py-6 flex flex-col items-center justify-center">
-              <button
-                onClick={handleTieRakhi}
-                className="group relative flex h-40 w-40 items-center justify-center rounded-full border-2 border-amber-500/60 bg-amber-500/15 shadow-glow hover:scale-105 active:scale-95 transition cursor-pointer"
-              >
-                {rakhiTied ? (
-                  <div className="text-center">
-                    <div className="text-4xl animate-wiggle">💖</div>
-                    <div className="text-xs font-bold text-amber-600 mt-1">Rakhi Tied!</div>
+            <div className="py-4 flex flex-col items-center justify-center">
+              {rakhiTied ? (
+                <div className="text-center py-6 animate-scale-in">
+                  <div className="text-5xl animate-bounce">💖</div>
+                  <div className="text-base font-cinzel font-black text-amber-600 dark:text-amber-300 mt-2">
+                    Sacred Rakhi Tied on {siblingName}&apos;s Wrist!
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center">
-                    <RakhiMotifRenderer designId={rakhiDesignId} className="w-20 h-20 group-hover:scale-110 transition-transform" />
-                    <span className="text-xs font-bold text-amber-700 dark:text-amber-300 mt-1">
-                      Tap to Tie Rakhi
-                    </span>
+                  <div className="text-xs text-muted-foreground mt-1">
+                    Blessed with lifelong protection &amp; affection 🪔
                   </div>
-                )}
-              </button>
+                </div>
+              ) : (
+                <div className="w-full flex flex-col items-center">
+                  <RealisticRakhi
+                    style={
+                      rakhiDesignId === "peacock" ? "peacock"
+                      : rakhiDesignId === "rudraksha" ? "rudraksha"
+                      : rakhiDesignId === "om" ? "om"
+                      : "kundan"
+                    }
+                    variant="ceremony"
+                    interactive={true}
+                    onTie={handleTieRakhi}
+                    className="w-full"
+                  />
+                  <span className="text-xs font-bold text-amber-700 dark:text-amber-300 mt-2 animate-pulse">
+                    ✨ Touch or Click the Rakhi to Tie the Sacred Thread
+                  </span>
+                </div>
+              )}
             </div>
 
-            <Button
-              onClick={handleTieRakhi}
-              className="rounded-2xl bg-gradient-festive text-white font-bold px-6"
-            >
-              Tie Sacred Rakhi 🧵
-            </Button>
+            {!rakhiTied && (
+              <Button
+                onClick={handleTieRakhi}
+                className="rounded-2xl bg-gradient-festive text-white font-bold px-6 shadow-md hover:shadow-glow press-effect transition-all"
+              >
+                Tie Sacred Rakhi 🧵
+              </Button>
+            )}
           </div>
         )}
 
